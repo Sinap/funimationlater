@@ -2,7 +2,7 @@
 import cookielib
 import urllib2
 from urllib import urlencode
-
+import requests
 from utils import etree_to_dict
 
 
@@ -16,7 +16,7 @@ class XMLToDictMixin(object):
         Returns:
             dict:
         """
-        return etree_to_dict(data)
+        return etree_to_dict(str(data))
 
 
 class HTTPClient(XMLToDictMixin):
@@ -28,7 +28,7 @@ class HTTPClient(XMLToDictMixin):
         super(HTTPClient, self).__init__()
         self.host = host
         self.cj = cookielib.CookieJar()
-        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj))
+        self.headers = list()
         self._add_header(('Accept-Encoding', 'gzip, deflate'))
 
     def get(self, uri):
@@ -39,8 +39,8 @@ class HTTPClient(XMLToDictMixin):
         Returns:
             dict:
         """
-        resp = self.opener.open(self._build_url(uri))
-        return self.handle_response(resp.read())
+        resp = requests.get(self._build_url(uri))
+        return self.handle_response(resp.text)
 
     def post(self, uri, payload=None):
         """
@@ -53,8 +53,8 @@ class HTTPClient(XMLToDictMixin):
         """
         if payload is None:
             payload = ''
-        resp = self.opener.open(self._build_url(uri), urlencode(payload))
-        return self.handle_response(resp.read())
+        resp = requests.post(url=self._build_url(uri), data=payload)
+        return self.handle_response(resp.text)
 
     def add_headers(self, header):
         """
@@ -81,5 +81,5 @@ class HTTPClient(XMLToDictMixin):
         Args:
             header (tuple):
         """
-        if header not in self.opener.addheaders:
-            self.opener.addheaders.append(header)
+        if header not in self.headers:
+            self.headers.append(header)
