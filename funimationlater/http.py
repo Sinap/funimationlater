@@ -5,37 +5,43 @@ from urllib import urlencode
 from utils import etree_to_dict
 
 
-class XMLToDictResponseMixin(object):
-    @staticmethod
-    def handle_response(data):
-        """
+def xml_response(data):
+    return etree_to_dict(data)
+
+
+class HTTPClient(object):
+    """Used to handle POST and GET requests.
+
+    This class really just handles building the request and transforming the
+    response.
+
+    Attributes:
+        host (str): This will be used when building the URL.
+        headers (dict): The headers that are sent in the requests.
+        handle_response: This function is called for all requests and is passed
+            the results of the request as a string.
+    """
+    def __init__(self, host, response_handler=xml_response):
+        """Init the HTTPClient
+
         Args:
-            data (str):
-
-        Returns:
-            dict:
-        """
-        return etree_to_dict(data)
-
-
-class HTTPClient(XMLToDictResponseMixin):
-    def __init__(self, host):
-        """
-        Args:
-            host (str):
+            host (str): This is usually a domain.
+            response_handler: This function must take 1 argument and return
+                something.
         """
         super(HTTPClient, self).__init__()
         self.host = host
         self.headers = {'Accept-Encoding': 'gzip, deflate'}
+        self.handle_response = response_handler
 
     def get(self, uri, query_str=None):
-        """
-        Args:
-            query_str (dict):
-            uri (str):
+        """Send a GET request to `host` + `uri`
 
-        Returns:
-            dict:
+        Args:
+            uri (str): This will be concatenated to `host`.
+            query_str ([dict]): Optional query string to add to the URL.
+
+        Returns: Whatever is returned by `handle_response`.
         """
         if query_str:
             req = self.create_request(uri + urlencode(query_str))
@@ -45,14 +51,13 @@ class HTTPClient(XMLToDictResponseMixin):
         return self.handle_response(resp.read())
 
     def post(self, uri, data):
-        """Send a post request to the `uri`
+        """Send a POST request to `host` + `uri` with `data` as the body.
 
         Args:
-            uri (str):
-            data (dict): data is urlencoded before send the request
+            uri (str): This will be concatenated to `host`.
+            data (dict): Data is urlencoded before the request is sent.
 
-        Returns:
-            dict:
+        Returns: Whatever is returned by `handle_response`.
         """
         resp = urllib2.urlopen(self.create_request(uri), urlencode(data))
         return self.handle_response(resp.read())
@@ -61,19 +66,22 @@ class HTTPClient(XMLToDictResponseMixin):
         """Add headers to all requests.
 
         Args:
-            headers (dict):
+            headers (dict): Will overwrite existing keys
         """
         if not isinstance(headers, dict):
             raise TypeError('argument must be of type `dict`')
         self.headers.update(headers)
 
     def create_request(self, uri):
-        """Builds :class:`urllib2.Request` instance with `self.headers`
+        """Builds :class:`urllib2.Request` object using `uri` and sets the
+        headers to `headers`.
+
         Args:
-            uri (str):
+            uri (str): This will be concatenated to `host`
 
         Returns:
-            urllib2.Request:
+            urllib2.Request: A request object that will be used by
+                :class:`urllib2.urlopen`
         """
         return urllib2.Request(self._build_url(uri), headers=self.headers)
 

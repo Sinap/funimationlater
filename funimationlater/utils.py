@@ -7,20 +7,17 @@ from contextlib import contextmanager
 
 
 def etree_to_dict(xml):
-    """Converts an XML string to a dict
+    """Converts an XML string to a `dict`.
 
     Args:
         xml (str, Element): The string to convert.
-         keys begining with '@' are attributes.
-         the '#text' key is the elements text.
+         keys begining with '@' are attributes and '#text' key is the elements
+         text.
 
     Returns:
-        dict:
+        dict: The `dict` representation of the XML.
     """
-    if isinstance(xml, str):
-        t = Et.fromstring(xml)
-    else:
-        t = xml
+    t = Et.fromstring(xml) if isinstance(xml, str) else xml
     d = {t.tag: {} if t.attrib else None}
     children = list(t)
     if children:
@@ -42,6 +39,14 @@ def etree_to_dict(xml):
 
 
 def timethis(func):
+    """A decorator used to time functions or methods
+
+    Args:
+        func: The function or method to time
+
+    Returns: The result of the function or method call
+    """
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()

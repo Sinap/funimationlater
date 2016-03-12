@@ -21,7 +21,7 @@ class TestFunimationLater(unittest.TestCase):
             self.assertDictEqual(call_args[1], payload)
 
     def test_login_failed(self):
-        # mock failed login return value
+        # mock failed login to return a value
         with mock.patch('funimationlater.funimationlater.HTTPClient.post',
                         return_value={'authentication': {'error': 'error'}}):
             payload = {'username': 'foo', 'password': 'bar'}

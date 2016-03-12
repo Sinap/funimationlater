@@ -39,7 +39,7 @@ coverage:
 	open htmlcov/index.html
 
 docs:
-	rm -f docs/funimation-later.rst
+	rm -f docs/funimationlater.rst
 	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ funimationlater
 	$(MAKE) -C docs clean

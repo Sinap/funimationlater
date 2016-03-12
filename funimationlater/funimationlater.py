@@ -25,10 +25,10 @@ class Media(object):
         Args:
             data (dict): Data about the media.
             client (HTTPClient): An HTTP client.
-            Used to make requests from within the media object. e.g
-            >>> show = FunimationLater().get_shows('simulcast')[0]
-            >>> show[1]  # season 1
-            >>> show[1][4]  # season 1 episode 4
+                Could be used like this
+                >>> show = FunimationLater().get_shows('simulcast')[0]
+                >>> show[1]  # season 1
+                >>> show[1][4]  # season 1 episode 4
         """
         self.title = data['title']
         self.thumbnail = data['thumbnail']['#text']
@@ -56,7 +56,7 @@ class Video(Media):
 
 
 def _require_login(func):
-    """Decorator to require the user be logged in to call specific methods"""
+    """Decorator that throws an error when user isn't logged in."""
     @wraps(func)
     def wrapper(*args, **kwargs):
         # args[0] will always be self
@@ -126,7 +126,7 @@ class FunimationLater(object):
             limit (int):
 
         Returns:
-
+            list([Show]):
         """
         resp = self._get_content(
             id=show_type,
