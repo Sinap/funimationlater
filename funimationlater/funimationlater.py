@@ -2,7 +2,14 @@
 from http import HTTPClient
 from functools import wraps
 
-__all__ = ['FunimationLater', 'AuthenticationFailed', 'Show', 'Video']
+__all__ = ['FunimationLater', 'AuthenticationFailed', 'Show', 'Video',
+           'ShowTypes']
+
+
+class ShowTypes(object):
+    SIMULCAST = 'simulcasts'
+    BROADCAST_DUBS = 'broadcast-dubs'
+    SEARCH = 'search'
 
 
 # NOTE(Sinap): the errors should probably be moved into there own file
@@ -20,6 +27,8 @@ class UnknowResponse(Exception):
 
 # NOTE(Sinap): these should probably be moved into a different file
 class Media(object):
+    __slots__ = ['title', 'thumbnail', 'client']
+
     def __init__(self, data, client):
         """
         Args:
@@ -32,6 +41,11 @@ class Media(object):
         """
         self.title = data['title']
         self.thumbnail = data['thumbnail']['#text']
+        # try to get the iOS thumbnail link because we can use .format() with
+        # it easily to set the width and height.
+        for thumb in data['thumbnail']['alternate']:
+            if thumb['@platforms'] == 'ios':
+                self.thumbnail = thumb['#text']
         self.client = client
 
     def __repr__(self):
@@ -39,12 +53,13 @@ class Media(object):
 
 
 class Show(Media):
+    __slots__ = ['ratings', 'id']
+
     def __init__(self, data, client):
         super(Show, self).__init__(data, client)
-        self.ratings = [(r['#text'], r['@region'])
+        self.ratings = [(r['@region'], r['#text'])
                         for r in data['ratings']['tv']]
-        self.themes = data['themes']
-        self.id = data['id']
+        self.id = int(data['pointer']['params'].split('=')[1])
 
 
 class Video(Media):
@@ -83,6 +98,7 @@ class FunimationLater(object):
                                 {'username': username, 'password': password})
         if 'error' in resp['authentication']:
             raise AuthenticationFailed('username or password is incorrect')
+        # the API returns what headers should be set
         self.client.add_headers(resp['authentication']['parameters']['header'])
         self.logged_in = True
 

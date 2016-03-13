@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from utils import etree_to_dict
+from funimationlater.utils import etree_to_dict
 
 
 class TestUtils(unittest.TestCase):
