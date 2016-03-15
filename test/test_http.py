@@ -8,7 +8,7 @@ import funimationlater.http as http
 
 class TestHTTPClient(unittest.TestCase):
     def test_get_request(self):
-        with mock.patch('http.urllib2.urlopen') as urlopen:
+        with mock.patch('funimationlater.http.urllib2.urlopen') as urlopen:
             client = http.HTTPClient('https://foo.bar', lambda x: x)
             header = {'Foo': 'bar'}
             client.add_headers(header)
@@ -19,7 +19,7 @@ class TestHTTPClient(unittest.TestCase):
             self.assertDictContainsSubset(header, request.headers)
 
     def test_post_request(self):
-        with mock.patch('http.urllib2.urlopen') as urlopen:
+        with mock.patch('funimationlater.http.urllib2.urlopen') as urlopen:
             client = http.HTTPClient('https://foo.bar', lambda x: x)
             expected_payload = {'foo': 'bar'}
             header = {'Foo': 'bar'}
