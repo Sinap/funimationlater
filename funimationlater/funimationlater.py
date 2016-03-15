@@ -5,7 +5,7 @@ from functools import wraps
 from error import *
 from http import HTTPClient
 
-__all__ = ['FunimationLater', 'Show', 'Video', 'ShowTypes']
+__all__ = ['FunimationLater', 'Show', 'Episode', 'Video', 'ShowTypes']
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
@@ -26,23 +26,29 @@ class Media(object):
             data (dict): Data about the media.
             client (HTTPClient): An HTTP client.
         """
-        pointer = data['pointer']
-        if isinstance(pointer, list):
-            self.target = pointer[0]['target']
-            self.path = pointer[0]['path']
-            self.params = pointer[0]['params']
-        else:
-            self.target = pointer['target']
-            self.path = pointer['path']
-            self.params = pointer['params']
+        if 'pointer' in data:
+            pointer = data['pointer']
+            if isinstance(pointer, list):
+                self.target = pointer[0]['target']
+                self.path = pointer[0]['path']
+                self.params = pointer[0]['params']
+            else:
+                self.target = pointer['target']
+                self.path = pointer['path']
+                self.params = pointer['params']
         self.title = data['title']
         self.client = client
 
+    def parse_results(self, data):
+        """Can't think of a better name
+        Args:
+            data (dict):
+        """
+        raise NotImplemented
+
     def _invoke(self):
         resp = self.client.get(self.path, self.params)
-        if 'list2d' in resp:
-            return ShowDetails(resp[self.target], self.client)
-        raise NotImplemented
+        return self.parse_results(resp[self.target])
 
     def __repr__(self):
         return '<{}: {}>'.format(self.__class__.__name__,
@@ -52,6 +58,9 @@ class Media(object):
 class Show(Media):
     def __init__(self, data, client):
         super(Show, self).__init__(data, client)
+
+    def parse_results(self, data):
+        return ShowDetails(data, self.client)
 
     def get_details(self):
         """
@@ -64,23 +73,34 @@ class Show(Media):
 class ShowDetails(Media):
     def __init__(self, data, client):
         super(ShowDetails, self).__init__(data, client)
-        # TODO(Sinap): Find a way to get the seasons info
+        hero = data['hero']['item']
+        content = hero['content']
+        self.title = hero['title']
+        self.description = content['description']
+        self.format = content['metadata']['format']
+        self.release_year = content['metadata']['releaseYear']
+        self.thumbnail = hero['thumbnail']['#text']
+        for thumb in hero['thumbnail']['alternate']:
+            if 'ios' in thumb['@platforms']:
+                self.thumbnail = thumb['#text']
+        # NOTE(Sinap): WHY?!?!
+        filter = data['pointer'][0]['longList']['palette']['filter']
+        button = filter[0]['choices']['button']
+        self.seasons = [(b['title'], b['value']) for b in button]
         self.season = 1
 
     def get_episodes(self, season=1):
         self.season = season
+        self.params = '{}&season={}'.format(self.params, self.season)
         return self._invoke()
 
-    def _invoke(self):
-        resp = self.client.get(self.path, '{}&season={}'.format(
-            self.params, self.season))
-        return [Video(x, self.client) for x in
-                resp[self.target]['items']['item']]
+    def parse_results(self, data):
+        return [Episode(x, self.client) for x in data['items']['item']]
 
 
-class Video(Media):
+class Episode(Media):
     def __init__(self, data, client):
-        super(Video, self).__init__(data, client)
+        super(Episode, self).__init__(data, client)
         content = data['content']
         metadata = content['metadata']
         self.description = content['description']
@@ -88,6 +108,21 @@ class Video(Media):
         self.format = metadata['format']
         self.episode_number = int(metadata['episodeNumber'])
         self.languages = metadata['languages'].split(',')
+
+    def parse_results(self, data):
+        return Video(data, self.client)
+
+
+class Video(Media):
+    def __init__(self, data, client):
+        # this class can probably be combined with Episode because i think
+        # all we need from this is the video url
+        video = data['item']['video']
+        super(Video, self).__init__(video, client)
+        self.video_url = data['item']['hls']['url']
+        self.id = video['id']
+        self.thumbnail = video['thumbnail']
+        self.duration = video['content']['metadata']['duration']
 
 
 def require_login(func):
@@ -148,20 +183,6 @@ class FunimationLater(object):
         if 'watchlist' in resp:
             return [Show(x['item'], self.client) for x in
                     resp['watchlist']['items']['historyitem']]
-        raise UnknowResponse(resp)
-
-    @require_login
-    def video_details(self, pk):
-        """
-        Args:
-            pk (str):
-
-        Returns:
-            Video:
-        """
-        resp = self.client.get('/detail/?pk={}'.format(pk))
-        if 'list2d' in resp:
-            return Video(resp['list2d']['hero']['item'], self.client)
         raise UnknowResponse(resp)
 
     @require_login

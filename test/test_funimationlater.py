@@ -3,8 +3,11 @@
 Tests for `funimationlater` module.
 """
 import unittest
+import logging
 import mock
 import funimationlater
+
+logging.basicConfig(level=logging.INFO)
 
 
 class TestFunimationLater(unittest.TestCase):
@@ -34,7 +37,14 @@ class TestFunimationLater(unittest.TestCase):
 
     # def test_something(self):
     #     api = funimationlater.FunimationLater()
+    #     api.client.add_headers({
+    #         'userName': '',
+    #         'userType': '',
+    #         'Authorization': '123',
+    #         'userRole': '',
+    #     })
     #     api.logged_in = True
-    #     api.get_shows(limit=3)[1].get_details().get_episodes()
+    #     episode = api.get_shows()[14].get_details().get_episodes()[0]
+    #     episode._invoke()
     #     api.get_simulcasts(3)[1].get_details().get_episodes()
     #     api.get_all_shows(3)[1].get_details().get_episodes()
