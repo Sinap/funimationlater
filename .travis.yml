@@ -7,7 +7,7 @@ python:
   - "pypy"
 
 before_install:
-  - pip install codecov
+  - pip install codecov pytest-cov
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: 
