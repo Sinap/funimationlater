@@ -1,77 +1,102 @@
 # -*- coding: utf-8 -*-
-from http import HTTPClient
+import logging
 from functools import wraps
 
-__all__ = ['FunimationLater', 'AuthenticationFailed', 'Show', 'Video',
-           'ShowTypes']
+from error import *
+from http import HTTPClient
+
+__all__ = ['FunimationLater', 'Show', 'Video', 'ShowTypes']
+
+log = logging.getLogger(__name__)
+log.addHandler(logging.NullHandler())
 
 
 class ShowTypes(object):
     SIMULCAST = 'simulcasts'
     BROADCAST_DUBS = 'broadcast-dubs'
     SEARCH = 'search'
-
-
-# NOTE(Sinap): the errors should probably be moved into there own file
-class AuthenticationFailed(Exception):
-    pass
-
-
-class LoginRequired(Exception):
-    pass
-
-
-class UnknowResponse(Exception):
-    pass
+    SHOWS = 'shows'
 
 
 # NOTE(Sinap): these should probably be moved into a different file
 class Media(object):
-    __slots__ = ['title', 'thumbnail', 'client']
-
     def __init__(self, data, client):
         """
         Args:
             data (dict): Data about the media.
             client (HTTPClient): An HTTP client.
-                Could be used like this
-                >>> show = FunimationLater().get_shows('simulcast')[0]
-                >>> show[1]  # season 1
-                >>> show[1][4]  # season 1 episode 4
         """
+        pointer = data['pointer']
+        if isinstance(pointer, list):
+            self.target = pointer[0]['target']
+            self.path = pointer[0]['path']
+            self.params = pointer[0]['params']
+        else:
+            self.target = pointer['target']
+            self.path = pointer['path']
+            self.params = pointer['params']
         self.title = data['title']
-        self.thumbnail = data['thumbnail']['#text']
-        # try to get the iOS thumbnail link because we can use .format() with
-        # it easily to set the width and height.
-        for thumb in data['thumbnail']['alternate']:
-            if thumb['@platforms'] == 'ios':
-                self.thumbnail = thumb['#text']
         self.client = client
 
+    def _invoke(self):
+        resp = self.client.get(self.path, self.params)
+        if 'list2d' in resp:
+            return ShowDetails(resp[self.target], self.client)
+        raise NotImplemented
+
     def __repr__(self):
-        return '<{}: {}>'.format(self.__class__.__name__, self.title)
+        return '<{}: {}>'.format(self.__class__.__name__,
+                                 self.title.encode('utf-8'))
 
 
 class Show(Media):
-    __slots__ = ['ratings', 'id']
-
     def __init__(self, data, client):
         super(Show, self).__init__(data, client)
-        self.ratings = [(r['@region'], r['#text'])
-                        for r in data['ratings']['tv']]
-        self.id = int(data['pointer']['params'].split('=')[1])
+
+    def get_details(self):
+        """
+        Returns:
+            ShowDetails:
+        """
+        return self._invoke()
+
+
+class ShowDetails(Media):
+    def __init__(self, data, client):
+        super(ShowDetails, self).__init__(data, client)
+        # TODO(Sinap): Find a way to get the seasons info
+        self.season = 1
+
+    def get_episodes(self, season=1):
+        self.season = season
+        return self._invoke()
+
+    def _invoke(self):
+        resp = self.client.get(self.path, '{}&season={}'.format(
+            self.params, self.season))
+        return [Video(x, self.client) for x in
+                resp[self.target]['items']['item']]
 
 
 class Video(Media):
     def __init__(self, data, client):
         super(Video, self).__init__(data, client)
-        self.desctription = data['content']['description']
-        self.release_year = data['content']['metadata']['releaseYear']
-        self.format = data['content']['metadata']['format']
+        content = data['content']
+        metadata = content['metadata']
+        self.description = content['description']
+        self.duration = int(metadata['duration'])
+        self.format = metadata['format']
+        self.episode_number = int(metadata['episodeNumber'])
+        self.languages = metadata['languages'].split(',')
 
 
-def _require_login(func):
-    """Decorator that throws an error when user isn't logged in."""
+def require_login(func):
+    """Decorator that throws an error when user isn't logged in.
+
+    Args:
+        func: The function to wrap
+    """
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         # args[0] will always be self
@@ -83,10 +108,13 @@ def _require_login(func):
 
 
 class FunimationLater(object):
-    def __init__(self):
-        """Funimation API"""
-        self.client = HTTPClient('https://api-funimation.dadcdigital.com/xml')
+    ENDPOINT = 'https://api-funimation.dadcdigital.com/xml'
+
+    def __init__(self, username=None, password=None):
+        self.client = HTTPClient(self.ENDPOINT)
         self.logged_in = False
+        if username and password:
+            self.login(username, password)
 
     def login(self, username, password):
         """Login and set the authentication headers
@@ -102,7 +130,7 @@ class FunimationLater(object):
         self.client.add_headers(resp['authentication']['parameters']['header'])
         self.logged_in = True
 
-    @_require_login
+    @require_login
     def get_my_queue(self):
         """Get the list of shows in the current users queue
         Returns:
@@ -114,7 +142,7 @@ class FunimationLater(object):
                     resp['watchlist']['items']['item']]
         raise UnknowResponse(resp)
 
-    @_require_login
+    @require_login
     def get_history(self):
         resp = self.client.get('/history/get-items/?')
         if 'watchlist' in resp:
@@ -122,7 +150,7 @@ class FunimationLater(object):
                     resp['watchlist']['items']['historyitem']]
         raise UnknowResponse(resp)
 
-    @_require_login
+    @require_login
     def video_details(self, pk):
         """
         Args:
@@ -132,9 +160,12 @@ class FunimationLater(object):
             Video:
         """
         resp = self.client.get('/detail/?pk={}'.format(pk))
-        return Video(resp['list2d']['hero']['item'], self.client)
+        if 'list2d' in resp:
+            return Video(resp['list2d']['hero']['item'], self.client)
+        raise UnknowResponse(resp)
 
-    def get_shows(self, show_type, offset=0, limit=20):
+    @require_login
+    def get_shows(self, show_type=ShowTypes.SHOWS, limit=20, offset=0):
         """
         Args:
             show_type (str): simulcasts, broadcast-dubs, genre
@@ -148,7 +179,6 @@ class FunimationLater(object):
             id=show_type,
             sort='start_timestamp',
             sort_direction='desc',
-            role='g',  # no idea what this means
             itemThemes='dateAddedShow',
             territory='US',
             offset=offset,
@@ -156,6 +186,12 @@ class FunimationLater(object):
         )
         return [Show(x, self.client) for x in resp['items']['item']]
 
+    def get_all_shows(self, limit=20, offset=0):
+        return self.get_shows(ShowTypes.SHOWS, limit, offset)
+
+    def get_simulcasts(self, limit=20, offset=0):
+        return self.get_shows(ShowTypes.SIMULCAST, limit, offset)
+
     def _get_content(self, **kwargs):
-        resp = self.client.get('/longlist/content/page/?', kwargs)
+        resp = self.client.get('/longlist/content/page/', kwargs)
         return resp

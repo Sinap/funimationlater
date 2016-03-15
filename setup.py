@@ -18,7 +18,7 @@ doclink = """
 Documentation
 -------------
 
-The full documentation is at http://funimation-later.rtfd.org."""
+The full documentation is at http://funimationlater.rtfd.org."""
 
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
@@ -46,7 +46,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],

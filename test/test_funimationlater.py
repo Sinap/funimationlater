@@ -8,7 +8,6 @@ import funimationlater
 
 
 class TestFunimationLater(unittest.TestCase):
-
     def test_login_successful(self):
         with mock.patch('funimationlater.funimationlater.HTTPClient'):
             payload = {'username': 'foo', 'password': 'bar'}
@@ -32,3 +31,10 @@ class TestFunimationLater(unittest.TestCase):
             call_args = api.client.post.call_args[0]
             self.assertEqual(call_args[0], '/auth/login/?')
             self.assertDictEqual(call_args[1], payload)
+
+    # def test_something(self):
+    #     api = funimationlater.FunimationLater()
+    #     api.logged_in = True
+    #     api.get_shows(limit=3)[1].get_details().get_episodes()
+    #     api.get_simulcasts(3)[1].get_details().get_episodes()
+    #     api.get_all_shows(3)[1].get_details().get_episodes()

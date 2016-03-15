@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from funimationlater.utils import etree_to_dict
+from funimationlater.utils import etree_to_dict, CaseInsensitiveDict
 
 
 class TestUtils(unittest.TestCase):
@@ -18,5 +18,10 @@ class TestUtils(unittest.TestCase):
                              'from': 'Bar',
                              'heading': 'Foo Bar',
                              'to': {'#text': 'Foo', '@foo': 'bar'}}}
-        actual = etree_to_dict(xml)
+        # convert it back to a dict from a CaseInsensitiveDict
+        actual = dict(etree_to_dict(xml))
         self.assertDictEqual(actual, expected)
+
+    def test_case_insensitive_dict(self):
+        ci_dict = CaseInsensitiveDict({'MixEdCase': 42})
+        self.assertIn('mixEdCase', ci_dict)

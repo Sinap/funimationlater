@@ -1,9 +1,52 @@
 # -*- coding: utf-8 -*-
 import time
+import collections
+import logging
 import xml.etree.cElementTree as Et
-from collections import defaultdict
 from functools import wraps
 from contextlib import contextmanager
+
+__all__ = ['CaseInsensitiveDict', 'etree_to_dict', 'timethis', 'timeblock']
+log = logging.getLogger(__name__)
+
+
+class CaseInsensitiveDict(collections.MutableMapping):
+    def __init__(self, data=None, **kwargs):
+        self._store = {}
+        if data is None:
+            data = {}
+        self.update(data, **kwargs)
+
+    def __setitem__(self, key, value):
+        self._store[key.lower()] = (key, value)
+
+    def __getitem__(self, key):
+        return self._store[key.lower()][1]
+
+    def __len__(self):
+        return len(self._store)
+
+    def __iter__(self):
+        return (k for k, _ in self._store.values())
+
+    def __delitem__(self, key):
+        del self._store[key.lower()]
+
+    def __eq__(self, other):
+        if isinstance(other, collections.Mapping):
+            other = CaseInsensitiveDict(other)
+        else:
+            return NotImplemented
+        return dict(self.lower_items()) == dict(other.lower_items())
+
+    def __repr__(self):
+        return '%s(%r)' % (self.__class__.__name__, dict(self.items()))
+
+    def lower_items(self):
+        return ((k, v) for k, v in self._store.items())
+
+    def copy(self):
+        return CaseInsensitiveDict(self._store.values())
 
 
 def etree_to_dict(xml):
@@ -21,7 +64,7 @@ def etree_to_dict(xml):
     d = {t.tag: {} if t.attrib else None}
     children = list(t)
     if children:
-        dd = defaultdict(list)
+        dd = collections.defaultdict(list)
         for dc in map(etree_to_dict, children):
             for k, v in dc.iteritems():
                 dd[k].append(v)
@@ -35,7 +78,7 @@ def etree_to_dict(xml):
                 d[t.tag]['#text'] = text
         else:
             d[t.tag] = text
-    return d
+    return CaseInsensitiveDict(d)
 
 
 def timethis(func):
@@ -52,14 +95,16 @@ def timethis(func):
         start = time.time()
         r = func(*args, **kwargs)
         end = time.time()
-        print('{}.{}: {}'.format(func.__module__, func.__name__, end - start))
+        log.info(
+            '{}.{}: {}'.format(func.__module__, func.__name__, end - start))
         return r
+
     return wrapper
 
 
 @contextmanager
 def timeblock(label):
-    """Time a block of statements
+    """A generator to time a block of statements
 
     Args:
         label (str): The label used in output.
@@ -69,4 +114,4 @@ def timeblock(label):
         yield
     finally:
         end = time.time()
-        print('{} : {}'.format(label, end - start))
+        log.info('{} : {}'.format(label, end - start))

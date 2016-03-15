@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import urllib2
+import logging
 from urllib import urlencode
 
 from utils import etree_to_dict
+
+log = logging.getLogger(__name__)
 
 
 def xml_response(data):
@@ -21,6 +24,7 @@ class HTTPClient(object):
         handle_response: This function is called for all requests and is passed
             the results of the request as a string.
     """
+
     def __init__(self, host, response_handler=xml_response):
         """Init the HTTPClient
 
@@ -31,7 +35,10 @@ class HTTPClient(object):
         """
         super(HTTPClient, self).__init__()
         self.host = host
-        self.headers = {'Accept-Encoding': 'gzip, deflate'}
+        self.headers = {
+            'Accept-Encoding': 'gzip, deflate',
+            'User-Agent': 'Python:FunimationLater:v0.0.1'
+        }
         self.handle_response = response_handler
 
     def get(self, uri, query_str=None):
@@ -44,9 +51,13 @@ class HTTPClient(object):
         Returns: Whatever is returned by `handle_response`.
         """
         if query_str:
-            req = self.create_request(uri + urlencode(query_str))
+            query = urlencode(query_str) if isinstance(query_str,
+                                                       dict) else query_str
+            req = self.create_request('{}?{}'.format(uri, query))
         else:
             req = self.create_request(uri)
+        log.debug(
+            'Calling {} on {}'.format(req.get_method(), req.get_full_url()))
         resp = urllib2.urlopen(req)
         return self.handle_response(resp.read())
 
