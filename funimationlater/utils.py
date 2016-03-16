@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import time
 import collections
-import logging
 import xml.etree.cElementTree as Et
 from functools import wraps
 from contextlib import contextmanager
 
 __all__ = ['CaseInsensitiveDict', 'etree_to_dict', 'timethis', 'timeblock']
-log = logging.getLogger(__name__)
 
 
 class CaseInsensitiveDict(collections.MutableMapping):
@@ -36,7 +34,7 @@ class CaseInsensitiveDict(collections.MutableMapping):
         if isinstance(other, collections.Mapping):
             other = CaseInsensitiveDict(other)
         else:
-            return NotImplemented
+            raise NotImplementedError
         return dict(self.lower_items()) == dict(other.lower_items())
 
     def __repr__(self):
@@ -95,8 +93,7 @@ def timethis(func):
         start = time.time()
         r = func(*args, **kwargs)
         end = time.time()
-        log.info(
-            '{}.{}: {}'.format(func.__module__, func.__name__, end - start))
+        print('{}.{}: {}'.format(func.__module__, func.__name__, end - start))
         return r
 
     return wrapper
@@ -114,4 +111,4 @@ def timeblock(label):
         yield
     finally:
         end = time.time()
-        log.info('{} : {}'.format(label, end - start))
+        print('{}: {}'.format(label, end - start))

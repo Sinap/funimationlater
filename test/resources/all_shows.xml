@@ -1,0 +1,1939 @@
+<items>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Mecha, Sci Fi: Heavy Object</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Heavy Object</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373134/English/1373134_English_ShowThumbnail_9a5d024a-41db-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373134/English/1373134_English_ShowThumbnail_9a5d024a-41db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373134/English/1373134_English_ShowThumbnail_9a5d024a-41db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373134/English/1373134_English_ShowThumbnail_9a5d024a-41db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91448</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 17</recentContentItem>
+                <recentlyAdded>added {1457731800} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91448</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91448</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Mecha, Sci Fi: Heavy Object
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Mecha, Sci Fi: Heavy Object
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=HVO</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=93723&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Mecha, Sci Fi: Heavy Object: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Fantasy, Sci Fi: Divine Gate</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Divine Gate</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>94310</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 10</recentContentItem>
+                <recentlyAdded>added {1457724599} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=94310</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=94310</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Fantasy, Sci Fi: Divine
+                                        Gate
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Fantasy, Sci Fi: Divine
+                                        Gate
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=DVG</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=93664&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Fantasy, Sci Fi: Divine Gate: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Comedy, Slice of Life: Dagashi Kashi</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Dagashi Kashi</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372800/Japanese/1372800_Japanese_ShowThumbnail_14d3815d-e9d4-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372800/Japanese/1372800_Japanese_ShowThumbnail_14d3815d-e9d4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372800/Japanese/1372800_Japanese_ShowThumbnail_14d3815d-e9d4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372800/Japanese/1372800_Japanese_ShowThumbnail_14d3815d-e9d4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91417</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 9</recentContentItem>
+                <recentlyAdded>added {1457677800} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91417</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91417</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Comedy, Slice of Life: Dagashi
+                                        Kashi
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Comedy, Slice of Life: Dagashi
+                                        Kashi
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=DGK</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=93691&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Comedy, Slice of Life: Dagashi Kashi: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Comedy, Sci Fi: Assassination Classroom</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Assassination Classroom</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372696/Japanese/1372696_Japanese_ShowThumbnail_24b1959e-14df-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372696/Japanese/1372696_Japanese_ShowThumbnail_24b1959e-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372696/Japanese/1372696_Japanese_ShowThumbnail_24b1959e-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372696/Japanese/1372696_Japanese_ShowThumbnail_24b1959e-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>19373</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 32</recentContentItem>
+                <recentlyAdded>added {1457650500} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=19373</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=19373</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Comedy, Sci Fi: Assassination
+                                        Classroom
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Comedy, Sci Fi: Assassination
+                                        Classroom
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=ASS</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=93652&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Comedy, Sci Fi: Assassination Classroom:
+                            {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Drama, Mystery, Supernatural: Erased</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Erased</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372958/Japanese/1372958_Japanese_ShowThumbnail_5fbfa292-14df-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372958/Japanese/1372958_Japanese_ShowThumbnail_5fbfa292-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372958/Japanese/1372958_Japanese_ShowThumbnail_5fbfa292-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372958/Japanese/1372958_Japanese_ShowThumbnail_5fbfa292-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91392</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 9</recentContentItem>
+                <recentlyAdded>added {1457648999} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91392</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91392</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Drama, Mystery, Supernatural:
+                                        Erased
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Drama, Mystery, Supernatural:
+                                        Erased
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=ERA</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=93660&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Drama, Mystery, Supernatural: Erased: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Comedy, Drama, Mystery: Haruchika - Haruta &amp; Chika
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Haruchika - Haruta &amp; Chika</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373094/Japanese/1373094_Japanese_ShowThumbnail_d3bdc49b-ffd4-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373094/Japanese/1373094_Japanese_ShowThumbnail_d3bdc49b-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373094/Japanese/1373094_Japanese_ShowThumbnail_d3bdc49b-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373094/Japanese/1373094_Japanese_ShowThumbnail_d3bdc49b-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91506</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 10</recentContentItem>
+                <recentlyAdded>added {1457564699} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91506</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91506</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Comedy, Drama, Mystery: Haruchika -
+                                        Haruta &amp; Chika
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Comedy, Drama, Mystery: Haruchika -
+                                        Haruta &amp; Chika
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=HRC</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=93093&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Comedy, Drama, Mystery: Haruchika - Haruta &amp;
+                            Chika: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Comedy, Slice of Life: Prince of Stride: Alternative</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Prince of Stride: Alternative</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1374200/Japanese/1374200_Japanese_ShowThumbnail_3379994f-00d5-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1374200/Japanese/1374200_Japanese_ShowThumbnail_3379994f-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1374200/Japanese/1374200_Japanese_ShowThumbnail_3379994f-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1374200/Japanese/1374200_Japanese_ShowThumbnail_3379994f-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91846</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 5</recentContentItem>
+                <recentlyAdded>added {1457470799} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91846</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91846</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Comedy, Slice of Life: Prince of
+                                        Stride: Alternative
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Comedy, Slice of Life: Prince of
+                                        Stride: Alternative
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=POS</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=92159&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Comedy, Slice of Life: Prince of Stride:
+                            Alternative: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Drama, Mystery, Sci Fi: PSYCHO-PASS</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>PSYCHO-PASS</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1301169/Japanese/1301169_Japanese_ShowThumbnail_80d7245d-99c3-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1301169/Japanese/1301169_Japanese_ShowThumbnail_80d7245d-99c3-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1301169/Japanese/1301169_Japanese_ShowThumbnail_80d7245d-99c3-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1301169/Japanese/1301169_Japanese_ShowThumbnail_80d7245d-99c3-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>29962</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 33</recentContentItem>
+                <recentlyAdded>added {1457455800} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=29962</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=29962</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Drama, Mystery, Sci Fi: PSYCHO-PASS
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Drama, Mystery, Sci Fi: PSYCHO-PASS
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=PSY</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=92167&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Drama, Mystery, Sci Fi: PSYCHO-PASS: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Bishonen, Comedy, Drama, Reverse Harem, Romance: Brothers
+                Conflict
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Brothers Conflict</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1294947/English/1294947_English_ShowThumbnail_a083c3f5-23db-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1294947/English/1294947_English_ShowThumbnail_a083c3f5-23db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1294947/English/1294947_English_ShowThumbnail_a083c3f5-23db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1294947/English/1294947_English_ShowThumbnail_a083c3f5-23db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>52681</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 12</recentContentItem>
+                <recentlyAdded>added {1457413200} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=52681</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=52681</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Bishonen, Comedy, Drama, Reverse
+                                        Harem, Romance: Brothers Conflict
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Bishonen, Comedy, Drama, Reverse
+                                        Harem, Romance: Brothers Conflict
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=BRO</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=92126&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Bishonen, Comedy, Drama, Reverse Harem, Romance:
+                            Brothers Conflict: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Adventure: Kingdom</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Kingdom</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1382952/Japanese/1382952_Japanese_ShowThumbnail_ca01d3df-28db-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1382952/Japanese/1382952_Japanese_ShowThumbnail_ca01d3df-28db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1382952/Japanese/1382952_Japanese_ShowThumbnail_ca01d3df-28db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1382952/Japanese/1382952_Japanese_ShowThumbnail_ca01d3df-28db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>31322</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 74</recentContentItem>
+                <recentlyAdded>added {1457413200} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=31322</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=31322</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Adventure: Kingdom</label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Adventure: Kingdom</label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=KIN</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=92527&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Adventure: Kingdom: {episode}</label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Adventure, Fantasy: Snow White with the Red Hair</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Snow White with the Red Hair</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1349690/Japanese/1349690_Japanese_ShowThumbnail_03bf9155-00d5-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1349690/Japanese/1349690_Japanese_ShowThumbnail_03bf9155-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1349690/Japanese/1349690_Japanese_ShowThumbnail_03bf9155-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1349690/Japanese/1349690_Japanese_ShowThumbnail_03bf9155-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>37057</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 21</recentContentItem>
+                <recentlyAdded>added {1457382600} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=37057</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=37057</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Adventure, Fantasy: Snow White with
+                                        the Red Hair
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Adventure, Fantasy: Snow White with
+                                        the Red Hair
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=SWR</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=92540&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Adventure, Fantasy: Snow White with the Red Hair:
+                            {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Adventure, Fan Service, Fantasy, Mystery, Shonen,
+                Slice of Life, Supernatural, Super Power: One Piece
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>One Piece</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1319704/English/1319704_English_ShowThumbnail_553e5e8e-dfb4-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1319704/English/1319704_English_ShowThumbnail_553e5e8e-dfb4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1319704/English/1319704_English_ShowThumbnail_553e5e8e-dfb4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1319704/English/1319704_English_ShowThumbnail_553e5e8e-dfb4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>20224</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 732</recentContentItem>
+                <recentlyAdded>added {1457334000} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=20224</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=20224</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Adventure, Fan Service,
+                                        Fantasy, Mystery, Shonen, Slice of Life,
+                                        Supernatural, Super Power: One Piece
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Adventure, Fan Service,
+                                        Fantasy, Mystery, Shonen, Slice of Life,
+                                        Supernatural, Super Power: One Piece
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=OPE</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=91882&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Adventure, Fan Service, Fantasy, Mystery,
+                            Shonen, Slice of Life, Supernatural, Super Power:
+                            One Piece: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Adventure, Fantasy: Grimgar of Fantasy and Ash
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Grimgar of Fantasy and Ash</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373065/Japanese/1373065_Japanese_ShowThumbnail_76089b98-14df-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373065/Japanese/1373065_Japanese_ShowThumbnail_76089b98-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373065/Japanese/1373065_Japanese_ShowThumbnail_76089b98-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373065/Japanese/1373065_Japanese_ShowThumbnail_76089b98-14df-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>93910</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 9</recentContentItem>
+                <recentlyAdded>added {1457299800} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=93910</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=93910</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Adventure, Fantasy: Grimgar
+                                        of Fantasy and Ash
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Adventure, Fantasy: Grimgar
+                                        of Fantasy and Ash
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=GRI</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=92023&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Adventure, Fantasy: Grimgar of Fantasy
+                            and Ash: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Bishonen, Comedy, Romance, Slice of Life: Rainbow Days &amp;
+                club RAINBOW
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Rainbow Days &amp; club RAINBOW</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373478/Japanese/1373478_Japanese_ShowThumbnail_fb098a5b-00d5-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373478/Japanese/1373478_Japanese_ShowThumbnail_fb098a5b-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373478/Japanese/1373478_Japanese_ShowThumbnail_fb098a5b-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373478/Japanese/1373478_Japanese_ShowThumbnail_fb098a5b-00d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>92340</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 9</recentContentItem>
+                <recentlyAdded>added {1457296200} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=92340</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=92340</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Bishonen, Comedy, Romance, Slice of
+                                        Life: Rainbow Days &amp; club RAINBOW
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Bishonen, Comedy, Romance, Slice of
+                                        Life: Rainbow Days &amp; club RAINBOW
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=RBD</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=87914&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Bishonen, Comedy, Romance, Slice of Life: Rainbow
+                            Days &amp; club RAINBOW: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Drama, Mystery, Sci Fi: Dimension W</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Dimension W</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372852/Japanese/1372852_Japanese_ShowThumbnail_175c024a-41db-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372852/Japanese/1372852_Japanese_ShowThumbnail_175c024a-41db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372852/Japanese/1372852_Japanese_ShowThumbnail_175c024a-41db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372852/Japanese/1372852_Japanese_ShowThumbnail_175c024a-41db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91330</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 9</recentContentItem>
+                <recentlyAdded>added {1457290800} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91330</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91330</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Drama, Mystery, Sci Fi:
+                                        Dimension W
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Drama, Mystery, Sci Fi:
+                                        Dimension W
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=DIM</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=87852&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Drama, Mystery, Sci Fi: Dimension W:
+                            {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Mecha, Sci Fi: Mobile Suit Gundam: Iron-Blooded
+                Orphans
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Mobile Suit Gundam: Iron-Blooded Orphans</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373369/Japanese/1373369_Japanese_ShowThumbnail_7302bda1-ffd4-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373369/Japanese/1373369_Japanese_ShowThumbnail_7302bda1-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373369/Japanese/1373369_Japanese_ShowThumbnail_7302bda1-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373369/Japanese/1373369_Japanese_ShowThumbnail_7302bda1-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91800</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 21</recentContentItem>
+                <recentlyAdded>added {1457270999} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91800</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91800</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Mecha, Sci Fi: Mobile Suit
+                                        Gundam: Iron-Blooded Orphans
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Mecha, Sci Fi: Mobile Suit
+                                        Gundam: Iron-Blooded Orphans
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=IBO</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=87863&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Mecha, Sci Fi: Mobile Suit Gundam:
+                            Iron-Blooded Orphans: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Mystery, Supernatural: Durarara!!</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Durarara!!</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372930/Japanese/1372930_Japanese_ShowThumbnail_7b426be7-a5d5-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372930/Japanese/1372930_Japanese_ShowThumbnail_7b426be7-a5d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372930/Japanese/1372930_Japanese_ShowThumbnail_7b426be7-a5d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372930/Japanese/1372930_Japanese_ShowThumbnail_7b426be7-a5d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>85644</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 56</recentContentItem>
+                <recentlyAdded>added {1457211599} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=85644</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=85644</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Mystery, Supernatural:
+                                        Durarara!!
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Mystery, Supernatural:
+                                        Durarara!!
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=DUR</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=91749&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Mystery, Supernatural: Durarara!!:
+                            {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Fantasy: Luck &amp; Logic</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Luck &amp; Logic</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373270/Japanese/1373270_Japanese_ShowThumbnail_dfd1bea7-ffd4-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373270/Japanese/1373270_Japanese_ShowThumbnail_dfd1bea7-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373270/Japanese/1373270_Japanese_ShowThumbnail_dfd1bea7-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373270/Japanese/1373270_Japanese_ShowThumbnail_dfd1bea7-ffd4-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>91527</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 9</recentContentItem>
+                <recentlyAdded>added {1457202600} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=91527</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=91527</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Fantasy: Luck &amp; Logic
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Fantasy: Luck &amp; Logic
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=LAL</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=87860&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Fantasy: Luck &amp; Logic: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Adventure, Fantasy, Shonen: Fairy Tail</label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Fairy Tail</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372989/Japanese/1372989_Japanese_ShowThumbnail_bbab522c-31db-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372989/Japanese/1372989_Japanese_ShowThumbnail_bbab522c-31db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372989/Japanese/1372989_Japanese_ShowThumbnail_bbab522c-31db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372989/Japanese/1372989_Japanese_ShowThumbnail_bbab522c-31db-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>24351</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 269</recentContentItem>
+                <recentlyAdded>added {1457161259} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=24351</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=24351</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Adventure, Fantasy, Shonen:
+                                        Fairy Tail
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Adventure, Fantasy, Shonen:
+                                        Fairy Tail
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=FTL</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=87824&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Adventure, Fantasy, Shonen: Fairy Tail:
+                            {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+    <item>
+        <analytics>
+            <category>Products</category>
+            <label>Action, Cyberpunk, Sci Fi: Pandora in the Crimson Shell Ghost
+                Urn
+            </label>
+            <click>
+                <action>Click</action>
+            </click>
+            <display>
+                <action>Impression</action>
+            </display>
+        </analytics>
+        <title>Pandora in the Crimson Shell Ghost Urn</title>
+        <thumbnail>
+            https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373428/Japanese/1373428_Japanese_ShowThumbnail_3edb15f4-a7d5-e511-80c5-0017a4776c06.jpg
+            <alternate platforms="android,ios,windows,winphone">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1373428/Japanese/1373428_Japanese_ShowThumbnail_3edb15f4-a7d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="firetv">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1373428/Japanese/1373428_Japanese_ShowThumbnail_3edb15f4-a7d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+            <alternate platforms="xbox360" styleIds="hd">
+                https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1373428/Japanese/1373428_Japanese_ShowThumbnail_3edb15f4-a7d5-e511-80c5-0017a4776c06.jpg
+            </alternate>
+        </thumbnail>
+        <id>92028</id>
+        <content>
+            <metadata>
+                <recentContentItem>Episode 4</recentContentItem>
+                <recentlyAdded>added {1457127600} ago</recentlyAdded>
+            </metadata>
+        </content>
+        <pointer platforms="windows,android,ios,firetv,winphone">
+            <target>list2d</target>
+            <path>detail/</path>
+            <params>pk=92028</params>
+            <themes>detail</themes>
+            <alternate platforms="xbox360">
+                <target>pivot</target>
+                <path>xbox360/pivot/show/</path>
+                <params>id=92028</params>
+            </alternate>
+        </pointer>
+        <legend>
+            <button>
+                <button>Y</button>
+                <pointer>
+                    <target>togglewatchlist</target>
+                    <toggle>
+                        <name>myqueue</name>
+                        <add>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Add</action>
+                                    <label>Action, Cyberpunk, Sci Fi: Pandora in
+                                        the Crimson Shell Ghost Urn
+                                    </label>
+                                </click>
+                            </analytics>
+                        </add>
+                        <remove>
+                            <analytics>
+                                <click>
+                                    <category>Queue</category>
+                                    <action>Remove</action>
+                                    <label>Action, Cyberpunk, Sci Fi: Pandora in
+                                        the Crimson Shell Ghost Urn
+                                    </label>
+                                </click>
+                            </analytics>
+                        </remove>
+                        <data>
+                            <target>invoke</target>
+                            <path>myqueue/</path>
+                            <params>id=PGS</params>
+                        </data>
+                    </toggle>
+                </pointer>
+            </button>
+            <button platforms="windows,android,ios,firetv,winphone">
+                <pointer>
+                    <target>player</target>
+                    <path>player/</path>
+                    <params>id=87876&amp;autoPlay={explicit:autoPlay}&amp;audio={explicit:audio}&amp;subtitle={explicit:subtitle}</params>
+                </pointer>
+                <analytics>
+                    <click>
+                        <category>Products</category>
+                        <action>Click</action>
+                        <label>Action, Cyberpunk, Sci Fi: Pandora in the Crimson
+                            Shell Ghost Urn: {episode}
+                        </label>
+                    </click>
+                </analytics>
+            </button>
+        </legend>
+    </item>
+</items>

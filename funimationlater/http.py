@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import urllib2
-import logging
 from urllib import urlencode
 
 from utils import etree_to_dict, CaseInsensitiveDict
-
-log = logging.getLogger(__name__)
 
 
 def xml_response(data):
@@ -57,8 +54,6 @@ class HTTPClient(object):
             req = self.create_request('{}?{}'.format(uri, query))
         else:
             req = self.create_request(uri)
-        log.debug(
-            'Calling {} on {}'.format(req.get_method(), req.get_full_url()))
         resp = urllib2.urlopen(req)
         return self.handle_response(resp.read())
 

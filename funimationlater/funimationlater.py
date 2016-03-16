@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
 from functools import wraps
 
 from error import UnknowResponse, LoginRequired, AuthenticationFailed
@@ -7,9 +6,6 @@ from http import HTTPClient
 from models import Show
 
 __all__ = ['FunimationLater', 'ShowTypes']
-
-log = logging.getLogger(__name__)
-log.addHandler(logging.NullHandler())
 
 
 class ShowTypes(object):

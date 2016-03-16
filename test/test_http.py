@@ -68,7 +68,7 @@ class TestHTTPClient(unittest.TestCase):
             self.assertTrue(urlopen.called)
             request = urlopen.call_args[0][0]
             self.assertIsInstance(request, urllib2.Request)
-            self.assertEqual(request._Request__original,
+            self.assertEqual(request.get_full_url(),
                              '{}/{}'.format(self.host, uri))
 
     def test_xml_response_handling(self):

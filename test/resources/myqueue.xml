@@ -1,0 +1,122 @@
+<watchlist>
+    <items>
+        <item>
+            <target>invoke</target>
+            <path>myqueue/</path>
+            <params>id=DVG</params>
+            <item>
+                <title>Divine Gate</title>
+                <thumbnail>
+                    https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+                    <alternate platforms="ios">
+                        https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+                    </alternate>
+                    <alternate platforms="android,windows,firetv">
+                        https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+                    </alternate>
+                    <alternate platforms="xbox360" styleIds="hd">
+                        https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1372878/Japanese/1372878_Japanese_ShowThumbnail_7bfa9b45-e9d4-e511-80c5-0017a4776c06.jpg
+                    </alternate>
+                </thumbnail>
+                <ratings>
+                    <tv region="CA">14</tv>
+                    <tv region="US">TV-14</tv>
+                    <tv region="GB">15</tv>
+                    <tv region="IE">PS</tv>
+                </ratings>
+                <pointer platforms="windows,android,ios,firetv,winphone">
+                    <target>list2d</target>
+                    <path>detail/</path>
+                    <params>pk=94310</params>
+                    <themes>detail</themes>
+                    <alternate platforms="xbox360">
+                        <target>pivot</target>
+                        <path>xbox360/pivot/show/</path>
+                        <params>id=94310</params>
+                    </alternate>
+                </pointer>
+                <legend>
+                    <button>
+                        <button>Y</button>
+                        <pointer>
+                            <target>togglewatchlist</target>
+                            <add>
+                                <title>Add to Queue</title>
+                            </add>
+                            <remove>
+                                <title>Remove from Queue</title>
+                            </remove>
+                            <toggle>
+                                <name>myqueue</name>
+                                <data>
+                                    <target>invoke</target>
+                                    <path>myqueue/</path>
+                                    <params>id=DVG</params>
+                                </data>
+                            </toggle>
+                        </pointer>
+                    </button>
+                </legend>
+            </item>
+        </item>
+        <item>
+            <target>invoke</target>
+            <path>myqueue/</path>
+            <params>id=ERG</params>
+            <item>
+                <title>Ergo Proxy</title>
+                <thumbnail>
+                    https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1329317/English/1329317_English_ShowThumbnail_1cc5cab6-bdbf-e511-80c5-0017a4776c06.jpg
+                    <alternate platforms="ios">
+                        https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_{height},w_{width},q_60/oth/FunimationStoreFront/1329317/English/1329317_English_ShowThumbnail_1cc5cab6-bdbf-e511-80c5-0017a4776c06.jpg
+                    </alternate>
+                    <alternate platforms="android,windows,firetv">
+                        https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_380,w_444,q_60/oth/FunimationStoreFront/1329317/English/1329317_English_ShowThumbnail_1cc5cab6-bdbf-e511-80c5-0017a4776c06.jpg
+                    </alternate>
+                    <alternate platforms="xbox360" styleIds="hd">
+                        https://res.cloudinary.com/sfp/image/upload/c_fill,g_north,h_187,w_232,q_60/oth/FunimationStoreFront/1329317/English/1329317_English_ShowThumbnail_1cc5cab6-bdbf-e511-80c5-0017a4776c06.jpg
+                    </alternate>
+                </thumbnail>
+                <ratings>
+                    <tv region="GB">18</tv>
+                    <tv region="CA">18</tv>
+                    <tv region="IE">MA</tv>
+                    <tv region="US">TV-MA</tv>
+                </ratings>
+                <pointer platforms="windows,android,ios,firetv,winphone">
+                    <target>list2d</target>
+                    <path>detail/</path>
+                    <params>pk=27645</params>
+                    <themes>detail</themes>
+                    <alternate platforms="xbox360">
+                        <target>pivot</target>
+                        <path>xbox360/pivot/show/</path>
+                        <params>id=27645</params>
+                    </alternate>
+                </pointer>
+                <legend>
+                    <button>
+                        <button>Y</button>
+                        <pointer>
+                            <target>togglewatchlist</target>
+                            <add>
+                                <title>Add to Queue</title>
+                            </add>
+                            <remove>
+                                <title>Remove from Queue</title>
+                            </remove>
+                            <toggle>
+                                <name>myqueue</name>
+                                <data>
+                                    <target>invoke</target>
+                                    <path>myqueue/</path>
+                                    <params>id=ERG</params>
+                                </data>
+                            </toggle>
+                        </pointer>
+                    </button>
+                </legend>
+            </item>
+        </item>
+    </items>
+</watchlist>
