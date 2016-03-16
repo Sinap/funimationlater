@@ -78,7 +78,7 @@ def etree_to_dict(xml):
                 d[t.tag]['#text'] = text
         else:
             d[t.tag] = text
-    return CaseInsensitiveDict(d)
+    return d
 
 
 def timethis(func):

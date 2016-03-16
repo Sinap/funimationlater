@@ -45,6 +45,6 @@ class TestFunimationLater(unittest.TestCase):
     #     })
     #     api.logged_in = True
     #     episode = api.get_shows()[14].get_details().get_episodes()[0]
-    #     episode._invoke()
+    #     episode.get_video().get_related()
     #     api.get_simulcasts(3)[1].get_details().get_episodes()
     #     api.get_all_shows(3)[1].get_details().get_episodes()

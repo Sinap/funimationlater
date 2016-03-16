@@ -3,13 +3,14 @@ import urllib2
 import logging
 from urllib import urlencode
 
-from utils import etree_to_dict
+from utils import etree_to_dict, CaseInsensitiveDict
 
 log = logging.getLogger(__name__)
 
 
 def xml_response(data):
-    return etree_to_dict(data)
+    resp = etree_to_dict(data)
+    return CaseInsensitiveDict(resp)
 
 
 class HTTPClient(object):
