@@ -79,7 +79,7 @@ class FunimationLater(object):
         raise UnknowResponse(resp)
 
     @require_login
-    def get_shows(self, show_type=ShowTypes.SHOWS, limit=20, offset=0):
+    def get_shows(self, show_type, limit=20, offset=0):
         """
         Args:
             show_type (str): simulcasts, broadcast-dubs, genre
@@ -100,8 +100,30 @@ class FunimationLater(object):
         )
         return [Show(x, self.client) for x in resp['items']['item']]
 
+    def search(self, query):
+        """Perform a search
+
+        Args:
+            query (str): The query string
+
+        Returns:
+            list: a list of results
+        """
+        resp = self._get_content(
+            id=ShowTypes.SEARCH,
+            sort='start_timestamp',
+            sort_direction='desc',
+            itemThemes='dateAddedShow',
+            q=query
+        )['items']['item']
+        if isinstance(resp, list):
+            return [Show(x, self.client) for x in resp]
+        else:
+            return [Show(resp, self.client)]
+
     def get_all_shows(self, limit=20, offset=0):
-        return self.get_shows(ShowTypes.SHOWS, limit, offset)
+        shows = self.get_shows(ShowTypes.SHOWS, limit, offset)
+        return sorted(shows, key=lambda x: x.title)
 
     def get_simulcasts(self, limit=20, offset=0):
         return self.get_shows(ShowTypes.SIMULCAST, limit, offset)

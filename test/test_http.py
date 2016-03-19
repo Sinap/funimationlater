@@ -14,7 +14,7 @@ class TestHTTPClient(unittest.TestCase):
 
     def test_get_request(self):
         with mock.patch('funimationlater.http.urllib2.urlopen') as urlopen:
-            client = http.HTTPClient(self.host, lambda x: x)
+            client = http.HTTPClient(self.host, http.NullHandler)
             header = {'Foo': 'bar'}
             client.add_headers(header)
             client.get('/')
@@ -27,7 +27,7 @@ class TestHTTPClient(unittest.TestCase):
         with mock.patch('funimationlater.http.urllib2.urlopen') as urlopen:
             uri = '/foobar'
             qry = {'foo': 'bar'}
-            client = http.HTTPClient(self.host, lambda x: x)
+            client = http.HTTPClient(self.host, http.NullHandler)
             client.get(uri, qry)
             self.assertTrue(urlopen.called)
             request = urlopen.call_args[0][0]
@@ -37,7 +37,7 @@ class TestHTTPClient(unittest.TestCase):
 
     def test_post_request(self):
         with mock.patch('funimationlater.http.urllib2.urlopen') as urlopen:
-            client = http.HTTPClient(self.host, lambda x: x)
+            client = http.HTTPClient(self.host, http.NullHandler)
             expected_payload = {'foo': 'bar'}
             header = {'Foo': 'bar'}
             client.add_headers(header)
@@ -63,7 +63,7 @@ class TestHTTPClient(unittest.TestCase):
     def test_build_url_correctly(self):
         with mock.patch('funimationlater.http.urllib2.urlopen') as urlopen:
             uri = 'foobar'
-            client = http.HTTPClient(self.host, lambda x: x)
+            client = http.HTTPClient(self.host, http.NullHandler)
             client.get(uri)
             self.assertTrue(urlopen.called)
             request = urlopen.call_args[0][0]

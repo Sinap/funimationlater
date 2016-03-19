@@ -1,13 +1,37 @@
 # -*- coding: utf-8 -*-
+import logging
 import urllib2
 from urllib import urlencode
 
 from utils import etree_to_dict, CaseInsensitiveDict
 
+log = logging.getLogger(__name__)
 
-def xml_response(data):
-    resp = etree_to_dict(data)
-    return CaseInsensitiveDict(resp)
+
+class ResponseHandler(object):
+    def __init__(self, resp, req):
+        """
+        Args:
+            resp (str):
+            req (urllib2.Request):
+        """
+        super(ResponseHandler, self).__init__()
+        self._resp = resp
+        self._req = req
+
+    def handle(self):
+        raise NotImplementedError
+
+
+class NullHandler(ResponseHandler):
+    def handle(self):
+        return self._resp
+
+
+class XMLResponse(ResponseHandler):
+    def handle(self):
+        data = etree_to_dict(self._resp)
+        return CaseInsensitiveDict(data)
 
 
 class HTTPClient(object):
@@ -23,7 +47,7 @@ class HTTPClient(object):
             the results of the request as a string.
     """
 
-    def __init__(self, host, response_handler=xml_response):
+    def __init__(self, host, response_handler=XMLResponse):
         """Init the HTTPClient
 
         Args:
@@ -39,23 +63,19 @@ class HTTPClient(object):
         }
         self.handle_response = response_handler
 
-    def get(self, uri, query_str=None):
+    def get(self, uri, qry=None):
         """Send a GET request to `host` + `uri`
 
         Args:
             uri (str): This will be concatenated to `host`.
-            query_str ([dict]): Optional query string to add to the URL.
+            qry ([dict]): Optional query string to add to the URL.
 
         Returns: Whatever is returned by `handle_response`.
         """
-        if query_str:
-            query = urlencode(query_str) if isinstance(query_str,
-                                                       dict) else query_str
-            req = self.create_request('{}?{}'.format(uri, query))
-        else:
-            req = self.create_request(uri)
-        resp = urllib2.urlopen(req)
-        return self.handle_response(resp.read())
+        if qry:
+            q = urlencode(qry) if isinstance(qry, dict) else qry
+            uri = '{}?{}'.format(uri, q)
+        return self.request(uri)
 
     def post(self, uri, data):
         """Send a POST request to `host` + `uri` with `data` as the body.
@@ -66,8 +86,13 @@ class HTTPClient(object):
 
         Returns: Whatever is returned by `handle_response`.
         """
-        resp = urllib2.urlopen(self.create_request(uri), urlencode(data))
-        return self.handle_response(resp.read())
+        return self.request(uri, urlencode(data))
+
+    def request(self, uri, data=None):
+        req = self._create_request(uri)
+        resp = urllib2.urlopen(req, data)
+        handler = self.handle_response(resp.read(), req)
+        return handler.handle()
 
     def add_headers(self, headers):
         """Add headers to all requests.
@@ -79,7 +104,7 @@ class HTTPClient(object):
             raise TypeError('argument must be of type `dict`')
         self.headers.update(headers)
 
-    def create_request(self, uri):
+    def _create_request(self, uri):
         """Builds :class:`urllib2.Request` object using `uri` and sets the
         headers to `headers`.
 
@@ -90,7 +115,10 @@ class HTTPClient(object):
             urllib2.Request: A request object that will be used by
                 :class:`urllib2.urlopen`
         """
-        return urllib2.Request(self._build_url(uri), headers=self.headers)
+        req = urllib2.Request(self._build_url(uri), headers=self.headers)
+        log.debug(
+            'Calling {} on {}'.format(req.get_method(), req.get_full_url()))
+        return req
 
     def _build_url(self, uri):
         if uri[0] == '/':

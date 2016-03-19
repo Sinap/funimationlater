@@ -9,3 +9,11 @@ class LoginRequired(Exception):
 
 class UnknowResponse(Exception):
     pass
+
+
+class InvalidSeason(Exception):
+    pass
+
+
+class UnknownEpisode(Exception):
+    pass

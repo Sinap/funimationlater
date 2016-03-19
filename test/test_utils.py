@@ -33,8 +33,7 @@ class TestUtils(unittest.TestCase):
         ci_dict = CaseInsensitiveDict(expected)
         self.assertEqual(ci_dict, expected)
         with self.assertRaises(NotImplementedError):
-            if ci_dict == 1:
-                pass
+            ci_dict == 1
 
     def test_case_insensitive_dict_del_key(self):
         ci_dict = CaseInsensitiveDict({'MiXeDcAsE': 42, 'keyToDelete': 1})
@@ -42,8 +41,8 @@ class TestUtils(unittest.TestCase):
         del ci_dict['keytodelete']
         self.assertEqual(len(ci_dict), 1)
         with self.assertRaises(KeyError):
-            # noinspection PyUnusedLocal
-            x = ci_dict['keytodelete']
+            # noinspection PyStatementEffect
+            ci_dict['keytodelete']
 
     def test_case_insensitive_dict_copy(self):
         expected = {'MiXeDcAsE': 42}
