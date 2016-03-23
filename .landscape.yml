@@ -13,3 +13,7 @@ python-targets:
 pyflakes:
   disable:
     - F401
+pylint:
+  disable:
+    - too-few-public-methods
+    - wildcard-import

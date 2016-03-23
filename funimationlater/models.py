@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from error import InvalidSeason, UnknownEpisode
+from __future__ import absolute_import
+
+from funimationlater.error import InvalidSeason, UnknownEpisode
 
 
 class EpisodeContainer(list):
@@ -19,9 +21,9 @@ class EpisodeContainer(list):
         Raises:
             InvalidEpisode: If the episode doesn't exist
         """
-        for s in self:
-            if s.episode_number == item:
-                return s.get_details()
+        for episode in self:
+            if episode.episode_number == item:
+                return episode.get_details()
         raise UnknownEpisode()
 
 
@@ -104,10 +106,10 @@ class ShowDetails(Media):
                 self.thumbnail = thumb['#text']
         pointer = data['pointer']
         if isinstance(pointer, list):
-            filter = pointer[0]['longList']['palette']['filter']
+            fltr = pointer[0]['longList']['palette']['filter']
         else:
-            filter = data['pointer']['longList']['palette']['filter']
-        button = filter[0]['choices']['button']
+            fltr = data['pointer']['longList']['palette']['filter']
+        button = fltr[0]['choices']['button']
         # NOTE(Sinap): etree_to_dict squashes nodes with only one child.
         # Might want to change this, not sure yet.
         if isinstance(button, list):
@@ -131,7 +133,8 @@ class ShowDetails(Media):
 
     def _parse_results(self, data):
         if data['items']:
-            return Season(data['items'], self.client, self.seasons[self.season])
+            return Season(
+                data['items'], self.client, self.seasons[self.season])
         else:
             return []
 
@@ -151,8 +154,8 @@ class ShowDetails(Media):
             ', '.join(self.seasons.values())))
 
     def __iter__(self):
-        for s in self.seasons:
-            yield s
+        for season in self.seasons:
+            yield season
 
 
 class Season(Media):
@@ -171,8 +174,8 @@ class Season(Media):
         return data
 
     def __iter__(self):
-        for e in self._episodes:
-            yield e
+        for episode in self._episodes:
+            yield episode
 
 
 class Episode(Media):

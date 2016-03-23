@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import logging
 import urllib2
 from urllib import urlencode
 
-from utils import etree_to_dict, CaseInsensitiveDict
-
-log = logging.getLogger(__name__)
+from funimationlater.utils import etree_to_dict, CaseInsensitiveDict
 
 
 class ResponseHandler(object):
@@ -62,6 +61,7 @@ class HTTPClient(object):
             'User-Agent': 'Python:FunimationLater:v0.0.1'
         }
         self.handle_response = response_handler
+        self._log = logging.getLogger(__name__)
 
     def get(self, uri, qry=None):
         """Send a GET request to `host` + `uri`
@@ -73,8 +73,8 @@ class HTTPClient(object):
         Returns: Whatever is returned by `handle_response`.
         """
         if qry:
-            q = urlencode(qry) if isinstance(qry, dict) else qry
-            uri = '{}?{}'.format(uri, q)
+            query = urlencode(qry) if isinstance(qry, dict) else qry
+            uri = '{}?{}'.format(uri, query)
         return self.request(uri)
 
     def post(self, uri, data):
@@ -116,8 +116,8 @@ class HTTPClient(object):
                 :class:`urllib2.urlopen`
         """
         req = urllib2.Request(self._build_url(uri), headers=self.headers)
-        log.debug(
-            'Calling {} on {}'.format(req.get_method(), req.get_full_url()))
+        self._log.debug(
+            'Calling %s on %s', req.get_method(), req.get_full_url())
         return req
 
     def _build_url(self, uri):

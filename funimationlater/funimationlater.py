@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from functools import wraps
 
-from error import UnknowResponse, LoginRequired, AuthenticationFailed
-from http import HTTPClient
-from models import Show
+from funimationlater.error import (UnknowResponse, LoginRequired,
+                                   AuthenticationFailed)
+from funimationlater.http import HTTPClient
+from funimationlater.models import Show
 
 __all__ = ['FunimationLater', 'ShowTypes']
 

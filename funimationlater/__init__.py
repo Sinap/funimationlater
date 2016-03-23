@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+# noinspection PyUnresolvedReferences
 import logging
-from funimationlater import *
+from funimationlater.funimationlater import *
 # noinspection PyUnresolvedReferences
-from error import *
+from funimationlater.error import *
 # noinspection PyUnresolvedReferences
-from models import *
+from funimationlater.models import *
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
