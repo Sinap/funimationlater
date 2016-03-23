@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 # noinspection PyUnresolvedReferences
 import logging
-from funimationlater.funimationlater import FunimationLater
 # noinspection PyUnresolvedReferences
-from funimationlater.error import (AuthenticationFailed, LoginRequired,
-                                   InvalidSeason, UnknownEpisode,
-                                   UnknowResponse)
+from .error import (AuthenticationFailed, LoginRequired,
+                    InvalidSeason, UnknownEpisode,
+                    UnknowResponse)
 # noinspection PyUnresolvedReferences
-from funimationlater.models import (Show, ShowDetails, Season, Episode,
-                                    EpisodeDetails, EpisodeContainer)
+from .models import (Show, ShowDetails, Season, Episode,
+                     EpisodeDetails, EpisodeContainer)
+from .funimationlater import FunimationLater
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
