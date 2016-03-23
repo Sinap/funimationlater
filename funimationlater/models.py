@@ -213,7 +213,7 @@ class EpisodeDetails(Media):
         related = data['item']['related']['alternate']
         self.video_url = hls['url']
         self.closed_caption_url = hls['closedCaptionUrl']
-        self.id = int(video['id'])
+        self.video_id = int(video['id'])
         self.thumbnail = video['thumbnail']
         self.duration = int(metadata['duration'])
         self.episode = int(metadata['episode'].split(' ')[1])

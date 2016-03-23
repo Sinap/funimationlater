@@ -16,3 +16,4 @@ pyflakes:
 pylint:
   disable:
     - too-few-public-methods
+    - too-many-instance-attributes
