@@ -8,6 +8,7 @@ ignore-paths:
     - docs
 ignore-patterns:
     - (^|/)docs(/|$)
+    - setup\.py
 python-targets:
     - 2
 pyflakes:
