@@ -176,6 +176,7 @@ class Season(Media):
 
 
 class Episode(Media):
+    # noinspection PyTypeChecker
     def __init__(self, data, client):
         super(Episode, self).__init__(data, client)
         content = data['content']

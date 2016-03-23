@@ -115,7 +115,12 @@ class FunimationLater(object):
             sort_direction='desc',
             itemThemes='dateAddedShow',
             q=query
-        )['items']['item']
+        )['items']
+        # for some reason resp['items'] is a tuple when it finds nothing
+        if isinstance(resp, tuple):
+            return None
+        else:
+            resp = resp['item']
         if isinstance(resp, list):
             return [Show(x, self.client) for x in resp]
         else:

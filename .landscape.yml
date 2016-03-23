@@ -1,0 +1,15 @@
+doc-warnings: yes
+test-warnings: no
+strictness: veryhigh
+autodetect: yes
+requirements:
+    - requirements.txt
+ignore-paths:
+    - docs
+ignore-patterns:
+    - (^|/)docs(/|$)
+python-targets:
+    - 2
+pyflakes:
+  disable:
+    - F401
