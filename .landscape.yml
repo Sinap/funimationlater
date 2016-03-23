@@ -16,4 +16,3 @@ pyflakes:
 pylint:
   disable:
     - too-few-public-methods
-    - wildcard-import

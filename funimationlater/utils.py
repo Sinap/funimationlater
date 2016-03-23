@@ -63,9 +63,9 @@ def etree_to_dict(xml):
     children = list(t)
     if children:
         dd = collections.defaultdict(list)
-        for dc in map(etree_to_dict, children):
-            for k, v in dc.iteritems():
-                dd[k].append(v)
+        for dc in [etree_to_dict(child) for child in children]:
+            for key, val in dc.iteritems():
+                dd[key].append(val)
         d = {t.tag: {k: v[0] if len(v) == 1 else v for k, v in dd.iteritems()}}
     if t.attrib:
         d[t.tag].update(('@' + k, v) for k, v in t.attrib.iteritems())
