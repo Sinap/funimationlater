@@ -5,6 +5,8 @@ import urllib2
 from urllib import urlencode
 
 from funimationlater.utils import etree_to_dict, CaseInsensitiveDict
+__all__ = ['HTTPClientBase', 'HTTPClient', 'ResponseHandler', 'XMLResponse',
+           'NullHandler']
 
 
 class ResponseHandler(object):
@@ -33,7 +35,22 @@ class XMLResponse(ResponseHandler):
         return CaseInsensitiveDict(data)
 
 
-class HTTPClient(object):
+class HTTPClientBase(object):
+    def __init__(self, host):
+        super(HTTPClientBase, self).__init__()
+        self.host = host
+
+    def get(self, uri):
+        raise NotImplementedError
+
+    def post(self, uri, data):
+        raise NotImplementedError
+
+    def add_headers(self, headers):
+        raise NotImplementedError
+
+
+class HTTPClient(HTTPClientBase):
     """Used to handle POST and GET requests.
 
     This class really just handles building the request and transforming the
@@ -46,7 +63,7 @@ class HTTPClient(object):
             the results of the request as a string.
     """
 
-    def __init__(self, host, response_handler=XMLResponse):
+    def __init__(self, host, response_handler=None):
         """Init the HTTPClient
 
         Args:
@@ -54,13 +71,15 @@ class HTTPClient(object):
             response_handler: This function must take 1 argument and return
                 something.
         """
-        super(HTTPClient, self).__init__()
-        self.host = host
+        super(HTTPClient, self).__init__(host)
         self.headers = {
             'Accept-Encoding': 'gzip, deflate',
             'User-Agent': 'Python:FunimationLater:v0.0.1'
         }
-        self.handle_response = response_handler
+        if response_handler is None:
+            self.handle_response = XMLResponse
+        else:
+            self.handle_response = response_handler
         self._log = logging.getLogger(__name__)
 
     def get(self, uri, qry=None):
@@ -75,7 +94,7 @@ class HTTPClient(object):
         if qry:
             query = urlencode(qry) if isinstance(qry, dict) else qry
             uri = '{}?{}'.format(uri, query)
-        return self.request(uri)
+        return self._request(uri)
 
     def post(self, uri, data):
         """Send a POST request to `host` + `uri` with `data` as the body.
@@ -86,13 +105,7 @@ class HTTPClient(object):
 
         Returns: Whatever is returned by `handle_response`.
         """
-        return self.request(uri, urlencode(data))
-
-    def request(self, uri, data=None):
-        req = self._create_request(uri)
-        resp = urllib2.urlopen(req, data)
-        handler = self.handle_response(resp.read(), req)
-        return handler.handle()
+        return self._request(uri, urlencode(data))
 
     def add_headers(self, headers):
         """Add headers to all requests.
@@ -103,6 +116,12 @@ class HTTPClient(object):
         if not isinstance(headers, dict):
             raise TypeError('argument must be of type `dict`')
         self.headers.update(headers)
+
+    def _request(self, uri, data=None):
+        req = self._create_request(uri)
+        resp = urllib2.urlopen(req, data)
+        handler = self.handle_response(resp.read(), req)
+        return handler.handle()
 
     def _create_request(self, uri):
         """Builds :class:`urllib2.Request` object using `uri` and sets the

@@ -4,7 +4,7 @@ from functools import wraps
 
 from funimationlater.error import (UnknowResponse, LoginRequired,
                                    AuthenticationFailed)
-from funimationlater.http import HTTPClient
+from funimationlater.http import HTTPClient, HTTPClientBase
 from funimationlater.models import Show
 
 __all__ = ['FunimationLater', 'ShowTypes']
@@ -39,9 +39,22 @@ class FunimationLater(object):
     base_path = '/xml'
     protocol = 'https'
 
-    def __init__(self, username=None, password=None):
-        self.client = HTTPClient(
-            '{}://{}{}'.format(self.protocol, self.host, self.base_path))
+    def __init__(self, username=None, password=None, http_client=None):
+        """
+        Args:
+            username (str):
+            password (str):
+            http_client: Must be an instance of HTTPClient
+        """
+        full_url = '{}://{}{}'.format(self.protocol, self.host, self.base_path)
+        if http_client is None:
+            self.client = HTTPClient(full_url)
+        else:
+            # NOTE(Sinap): using assert instead of raise here because we should
+            # never use a client that is not a subclass of HTTPClientBase.
+            assert issubclass(http_client, HTTPClientBase),\
+                'http_client must be a subclass of HTTPClientBase'
+            self.client = http_client(full_url)
         self.logged_in = False
         if username and password:
             self.login(username, password)
@@ -97,10 +110,11 @@ class FunimationLater(object):
             sort_direction='desc',
             itemThemes='dateAddedShow',
             territory='US',
+            role='g',
             offset=offset,
             limit=limit
         )
-        return [Show(x, self.client) for x in resp['items']['item']]
+        return resp
 
     def search(self, query):
         """Perform a search
@@ -117,24 +131,40 @@ class FunimationLater(object):
             sort_direction='desc',
             itemThemes='dateAddedShow',
             q=query
-        )['items']
-        # for some reason resp['items'] is a tuple when it finds nothing
-        if isinstance(resp, tuple):
-            return None
+        )
+        return resp
+
+    def get_all_shows(self, limit=20, offset=0):
+        shows = self.get_shows(ShowTypes.SHOWS, limit, offset)
+        if shows is None:
+            return []
         else:
-            resp = resp['item']
+            return shows
+
+    def get_simulcasts(self, limit=20, offset=0):
+        shows = self.get_shows(ShowTypes.SIMULCAST, limit, offset)
+        if shows is None:
+            return []
+        else:
+            return shows
+
+    def _get_content(self, **kwargs):
+        resp = self.client.get('/longlist/content/page/', kwargs)['items']
+        if isinstance(resp, (tuple, str)):
+            return None
+        resp = resp['item']
         if isinstance(resp, list):
             return [Show(x, self.client) for x in resp]
         else:
             return [Show(resp, self.client)]
 
-    def get_all_shows(self, limit=20, offset=0):
-        shows = self.get_shows(ShowTypes.SHOWS, limit, offset)
-        return sorted(shows, key=lambda x: x.title)
-
-    def get_simulcasts(self, limit=20, offset=0):
-        return self.get_shows(ShowTypes.SIMULCAST, limit, offset)
-
-    def _get_content(self, **kwargs):
-        resp = self.client.get('/longlist/content/page/', kwargs)
-        return resp
+    def __iter__(self):
+        offset = 0
+        limit = 20
+        while True:
+            shows = self.get_all_shows(limit=limit, offset=offset)
+            for show in shows:
+                yield show
+            if len(shows) < limit:
+                break
+            offset += limit
