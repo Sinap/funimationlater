@@ -2,6 +2,8 @@
 from __future__ import absolute_import
 
 from funimationlater.error import InvalidSeason, UnknownEpisode
+__all__ = ['Media', 'EpisodeContainer', 'Show', 'ShowDetails', 'Season',
+           'Episode', 'EpisodeDetails']
 
 
 class EpisodeContainer(list):
@@ -62,7 +64,7 @@ class Media(object):
 
     def __repr__(self):
         return '<{}: {}>'.format(self.__class__.__name__,
-                                 self.title.encode('utf-8'))
+                                 self.title)
 
 
 class Show(Media):
