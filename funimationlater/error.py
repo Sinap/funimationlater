@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import urllib2
+
+
 class AuthenticationFailed(Exception):
     pass
 
@@ -17,3 +20,9 @@ class InvalidSeason(Exception):
 
 class UnknownEpisode(Exception):
     pass
+
+
+class HTTPError(urllib2.HTTPError):
+    def __str__(self):
+        return 'HTTP Error {}: {} => {}'.format(
+            self.code, self.filename, self.msg)

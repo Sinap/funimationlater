@@ -4,35 +4,9 @@ import logging
 import urllib2
 from urllib import urlencode
 
-from funimationlater.utils import etree_to_dict, CaseInsensitiveDict
-__all__ = ['HTTPClientBase', 'HTTPClient', 'ResponseHandler', 'XMLResponse',
-           'NullHandler']
-
-
-class ResponseHandler(object):
-    def __init__(self, resp, req):
-        """
-        Args:
-            resp (str):
-            req (urllib2.Request):
-        """
-        super(ResponseHandler, self).__init__()
-        self._resp = resp
-        self._req = req
-
-    def handle(self):
-        raise NotImplementedError
-
-
-class NullHandler(ResponseHandler):
-    def handle(self):
-        return self._resp
-
-
-class XMLResponse(ResponseHandler):
-    def handle(self):
-        data = etree_to_dict(self._resp)
-        return CaseInsensitiveDict(data)
+from .response_handler import XMLResponse
+from .error import HTTPError
+__all__ = ['HTTPClientBase', 'HTTPClient']
 
 
 class HTTPClientBase(object):
@@ -40,13 +14,10 @@ class HTTPClientBase(object):
         super(HTTPClientBase, self).__init__()
         self.host = host
 
-    def get(self, uri):
+    def get(self, uri, qry=None):
         raise NotImplementedError
 
     def post(self, uri, data):
-        raise NotImplementedError
-
-    def add_headers(self, headers):
         raise NotImplementedError
 
 
@@ -119,9 +90,12 @@ class HTTPClient(HTTPClientBase):
 
     def _request(self, uri, data=None):
         req = self._create_request(uri)
-        resp = urllib2.urlopen(req, data)
-        handler = self.handle_response(resp.read(), req)
-        return handler.handle()
+        try:
+            resp = urllib2.urlopen(req, data)
+            handler = self.handle_response(resp.read(), req)
+            return handler.handle()
+        except urllib2.HTTPError as err:
+            raise HTTPError(err.filename, err.code, err.msg, err.hdrs, err.fp)
 
     def _create_request(self, uri):
         """Builds :class:`urllib2.Request` object using `uri` and sets the

@@ -9,6 +9,12 @@ from .error import (AuthenticationFailed, LoginRequired,
 from .models import (Show, ShowDetails, Season, Episode,
                      EpisodeDetails, EpisodeContainer)
 from .funimationlater import FunimationLater
+# noinspection PyUnresolvedReferences
+from .constants import ShowTypes
+# noinspection PyUnresolvedReferences
+from .http import HTTPClientBase
+# noinspection PyUnresolvedReferences
+from .response_handler import ResponseHandler
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
