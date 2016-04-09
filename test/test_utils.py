@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 import mock
+import xml.etree.cElementTree as Et
 from StringIO import StringIO
 from funimationlater.utils import (etree_to_dict, CaseInsensitiveDict,
                                    timethis, timeblock)
@@ -14,7 +15,7 @@ class TestUtils(unittest.TestCase):
                              'from': 'Bar',
                              'heading': 'Foo Bar',
                              'to': {'#text': 'Foo', '@foo': 'bar'}}}
-        actual = etree_to_dict(xml)
+        actual = etree_to_dict(Et.fromstring(xml))
         self.assertDictEqual(actual, expected)
 
     def test_case_insensitive_dict_setitem(self):

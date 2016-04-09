@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from funimationlater.error import InvalidSeason, UnknownEpisode
+from .error import InvalidSeason, UnknownEpisode
+
 __all__ = ['Media', 'EpisodeContainer', 'Show', 'ShowDetails', 'Season',
            'Episode', 'EpisodeDetails']
 
@@ -29,6 +30,61 @@ class EpisodeContainer(list):
         raise UnknownEpisode()
 
 
+class SeasonContainer(list):
+    def __getitem__(self, item):
+        for season in self:
+            if season.title == item:
+                return season
+
+
+class Pointer(object):
+    __slots__ = ['target', 'path', 'params', 'themes', 'platforms',
+                 'alternates']
+
+    def __init__(self, target, path, params, themes=None, alternates=None,
+                 **kwargs):
+        self.target = target
+        self.path = path
+        self.params = params
+        self.themes = themes
+        self.platforms = kwargs.get('@platforms')
+        if isinstance(alternates, list):
+            self.alternates = [Pointer(**alt) for alt in alternates]
+        elif alternates:
+            self.alternates = [Pointer(**alternates)]
+        else:
+            self.alternates = []
+
+
+class Thumbnail(object):
+    __slots__ = ['url', 'platforms', 'alternates']
+
+    def __init__(self, **kwargs):
+        self.url = kwargs.get('#text')
+        self.platforms = kwargs.get('@platforms')
+        alternates = kwargs.get('alternate')
+        if isinstance(alternates, list):
+            self.alternates = [Thumbnail(**alt) for alt in alternates]
+        elif alternates:
+            self.alternates = [Thumbnail(**alternates)]
+        else:
+            self.alternates = []
+
+    def __getitem__(self, item):
+        """Get the URL for a specific platform
+
+        Args:
+            item (str): The platform you want
+
+        Returns:
+            str: The URL of the specific playform or the default
+        """
+        for alt in self.alternates:
+            if item in alt.platforms:
+                return alt.url
+        return self.url
+
+
 class Media(object):
     def __init__(self, data, client):
         """Base media object
@@ -39,28 +95,20 @@ class Media(object):
         """
         if 'pointer' in data:
             pointer = data['pointer']
+            # NOTE(Sinap): Getting the details of a show returns two pointers,
+            # one to get episode details and one for similar shows. Index 0
+            # is always the episode pointer which is what we want.
             if isinstance(pointer, list):
-                self.target = pointer[0]['target']
-                self.path = pointer[0]['path']
-                self.params = pointer[0]['params']
+                self.pointer = Pointer(**pointer[0])
             else:
-                self.target = pointer['target']
-                self.path = pointer['path']
-                self.params = pointer['params']
+                self.pointer = Pointer(**pointer)
         self.title = data['title'].encode('utf-8')
         self.client = client
         self._data = data
 
-    def _parse_results(self, data):
-        """Can't think of a better name
-        Args:
-            data (dict):
-        """
-        raise NotImplementedError
-
-    def _invoke(self):
-        resp = self.client.get(self.path, self.params)
-        return self._parse_results(resp[self.target])
+    def invoke(self):
+        resp = self.client.get(self.pointer.path, self.pointer.params)
+        return resp[self.pointer.target]
 
     def __repr__(self):
         return '<{}: {}>'.format(self.__class__.__name__,
@@ -70,6 +118,19 @@ class Media(object):
 class Show(Media):
     def __init__(self, data, client):
         super(Show, self).__init__(data, client)
+        self.thumbnail = Thumbnail(**data['thumbnail'])
+        # NOTE(Sinap): Some shows don't have an ID or a content key
+        self.id = int(data.get('id', 0))
+        button = data['legend']['button']
+        if isinstance(button, list):
+            pointer = button[0]['pointer']
+        else:
+            pointer = button['pointer']
+        self.show_id = pointer['toggle']['data']['params'].split('=')[1]
+        if 'content' in data:
+            self.recent_item = data['content']['metadata']['recentContentItem']
+        else:
+            self.recent_item = None
 
     def get_details(self):
         """Get details about the show
@@ -77,16 +138,16 @@ class Show(Media):
         Returns:
             ShowDetails:
         """
-        return self._invoke()
+        return self.invoke()
 
-    def _parse_results(self, data):
-        return ShowDetails(data, self.client)
+    def invoke(self):
+        return ShowDetails(super(Show, self).invoke(), self.client)
 
     def __getitem__(self, item):
         return self.get_details().get_season(item)
 
     def __iter__(self):
-        details = self.get_details()
+        details = self.invoke()
         for season in details.seasons:
             result = details.get_season(season)
             if result:
@@ -102,10 +163,7 @@ class ShowDetails(Media):
         self.description = content['description']
         self.format = content['metadata']['format']
         self.release_year = content['metadata']['releaseYear']
-        self.thumbnail = hero['thumbnail']['#text']
-        for thumb in hero['thumbnail']['alternate']:
-            if 'ios' in thumb['@platforms']:
-                self.thumbnail = thumb['#text']
+        self.thumbnail = Thumbnail(**hero['thumbnail'])
         pointer = data['pointer']
         if isinstance(pointer, list):
             fltr = pointer[0]['longList']['palette']['filter']
@@ -130,10 +188,12 @@ class ShowDetails(Media):
 
     def get_season(self, season=1):
         self.season = season
-        self.params = '{}&season={}'.format(self.params, self.season)
-        return self._invoke()
+        self.pointer.params = '{}&season={}'.format(self.pointer.params,
+                                                    self.season)
+        return self.invoke()
 
-    def _parse_results(self, data):
+    def invoke(self):
+        data = super(ShowDetails, self).invoke()
         if data['items']:
             return Season(
                 data['items'], self.client, self.seasons[self.season])
@@ -172,9 +232,6 @@ class Season(Media):
             self._episodes = EpisodeContainer(
                 [Episode(data['item'], self.client)])
 
-    def _parse_results(self, data):
-        return data
-
     def __iter__(self):
         for episode in self._episodes:
             yield episode
@@ -200,10 +257,10 @@ class Episode(Media):
         Returns:
             EpisodeDetails:
         """
-        return self._invoke()
+        return self.invoke()
 
-    def _parse_results(self, data):
-        return EpisodeDetails(data, self.client)
+    def invoke(self):
+        return EpisodeDetails(super(Episode, self).invoke(), self.client)
 
 
 class EpisodeDetails(Media):
@@ -228,8 +285,9 @@ class EpisodeDetails(Media):
                         data['item']['ratings']['tv']]
 
     def get_related(self):
-        return self._invoke()
+        return self.invoke()
 
-    def _parse_results(self, data):
+    def invoke(self):
+        data = super(EpisodeDetails, self).invoke()
         data['title'] = data['hero']['item']['title']
         return ShowDetails(data, self.client)
