@@ -8,3 +8,13 @@ class ShowTypes(object):
 class SortBy(object):
     TITLE = 'slug_exact'
     DATE = 'start_timestamp'
+
+
+class SortOrder(object):
+    ASC = 'asc'
+    DESC = 'desc'
+
+
+class AudioType(object):
+    SUB = 'ja'
+    DUB = 'en'
