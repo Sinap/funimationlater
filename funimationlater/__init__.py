@@ -2,9 +2,7 @@
 # noinspection PyUnresolvedReferences
 import logging
 # noinspection PyUnresolvedReferences
-from .error import (AuthenticationFailed, LoginRequired,
-                    InvalidSeason, UnknownEpisode,
-                    UnknowResponse)
+from .error import *
 # noinspection PyUnresolvedReferences
 from .models import (Show, ShowDetails, Season, Episode,
                      EpisodeDetails, EpisodeContainer)
