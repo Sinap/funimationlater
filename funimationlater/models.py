@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+from .constants import AudioType
 from .response_handler import NullHandler
-from .error import InvalidSeason, UnknownEpisode
+from .error import UnknownSeason, UnknownEpisode
 
 __all__ = ['Media', 'EpisodeContainer', 'Show', 'ShowDetails', 'Season',
            'Episode', 'EpisodeDetails']
@@ -121,7 +122,7 @@ class Show(Media):
         super(Show, self).__init__(data, client)
         self.thumbnail = Thumbnail(**data['thumbnail'])
         # NOTE(Sinap): Some shows don't have an ID or a content key
-        self.id = int(data.get('id', 0))
+        self.id = int(data.get('id', self.pointer.params.split('=')[1]))
         button = data['legend']['button']
         if isinstance(button, list):
             pointer = button[0]['pointer']
@@ -213,7 +214,7 @@ class ShowDetails(Media):
         for season in self.seasons:
             if item == season:
                 return self.get_season(item)
-        raise InvalidSeason('valid seasons are: {}'.format(
+        raise UnknownSeason('valid seasons are: {}'.format(
             ', '.join(self.seasons.values())))
 
     def __iter__(self):
@@ -244,7 +245,7 @@ class Episode(Media):
         super(Episode, self).__init__(data, client)
         content = data['content']
         metadata = content['metadata']
-        self._language = None
+        self._audio = None
         self.description = content.get('description', '')
         self.duration = int(metadata['duration'])
         self.format = metadata['format']
@@ -255,11 +256,11 @@ class Episode(Media):
             self.languages = None
 
     def get_dub(self):
-        self._language = 'en'
+        self._audio = AudioType.DUB
         return self.invoke()
 
     def get_sub(self):
-        self._language = 'ja'
+        self._audio = AudioType.SUB
         return self.invoke()
 
     def get_details(self):
@@ -270,9 +271,9 @@ class Episode(Media):
         return self.invoke()
 
     def invoke(self):
-        if self._language:
+        if self._audio:
             self.pointer.params = self.pointer.params.replace(
-                'explicit:', '').format(autoPlay=1, audio=self._language)
+                'explicit:', '').format(autoPlay=1, audio=self._audio)
         return EpisodeDetails(super(Episode, self).invoke(), self.client)
 
 
