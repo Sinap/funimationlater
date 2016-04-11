@@ -58,7 +58,7 @@ class HTTPClient(HTTPClientBase):
 
         Args:
             uri (str): This will be concatenated to `host`.
-            qry ([dict]): Optional query string to add to the URL.
+            qry (Optional[dict]): Optional query string to add to the URL.
 
         Returns: Whatever is returned by `handle_response`.
         """
