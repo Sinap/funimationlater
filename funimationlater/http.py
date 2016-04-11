@@ -114,6 +114,8 @@ class HTTPClient(HTTPClientBase):
         return req
 
     def _build_url(self, uri):
+        if uri.startswith('http'):
+            return uri
         if uri[0] == '/':
             return self.host + uri
         else:
