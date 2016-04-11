@@ -43,6 +43,12 @@ class TestFunimationLater(unittest.TestCase):
             self.assertIsInstance(queue, list)
             self.assertIsInstance(queue[0], funimationlater.Show)
 
+    def test_add_to_queue(self):
+        pass
+
+    def test_remove_from_queue(self):
+        pass
+
     def test_get_all_shows(self):
         with mock.patch('funimationlater.http.urllib2.urlopen',
                         return_value=open(
@@ -54,3 +60,10 @@ class TestFunimationLater(unittest.TestCase):
             self.assertIsNotNone(shows)
             self.assertIsInstance(shows, list)
             self.assertIsInstance(shows[0], funimationlater.Show)
+
+    def test_get_show_raises_error(self):
+        with mock.patch('funimationlater.funimationlater.HTTPClient.get',
+                        side_effect=funimationlater.HTTPError(
+                            '', 404, 'NOT FOUND', {}, mock.Mock())):
+            api = funimationlater.FunimationLater()
+            self.assertRaises(funimationlater.UnknownShow, api.get_show, 1)
