@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+from .response_handler import NullHandler
 from .error import InvalidSeason, UnknownEpisode
 
 __all__ = ['Media', 'EpisodeContainer', 'Show', 'ShowDetails', 'Season',
@@ -243,6 +244,7 @@ class Episode(Media):
         super(Episode, self).__init__(data, client)
         content = data['content']
         metadata = content['metadata']
+        self._language = None
         self.description = content.get('description', '')
         self.duration = int(metadata['duration'])
         self.format = metadata['format']
@@ -252,6 +254,14 @@ class Episode(Media):
         else:
             self.languages = None
 
+    def get_dub(self):
+        self._language = 'en'
+        return self.invoke()
+
+    def get_sub(self):
+        self._language = 'ja'
+        return self.invoke()
+
     def get_details(self):
         """
         Returns:
@@ -260,6 +270,9 @@ class Episode(Media):
         return self.invoke()
 
     def invoke(self):
+        if self._language:
+            self.pointer.params = self.pointer.params.replace(
+                'explicit:', '').format(autoPlay=1, audio=self._language)
         return EpisodeDetails(super(Episode, self).invoke(), self.client)
 
 
@@ -283,6 +296,39 @@ class EpisodeDetails(Media):
         self.target = related['target']
         self.ratings = [(r['@region'], r['#text']) for r in
                         data['item']['ratings']['tv']]
+
+    def get_stream(self, quality=None):
+        """Get the m3u URL for a specific stream quality.
+
+        If the quality doesn't exist the default m3u file that contains all
+        streams is returned.
+
+        Args:
+            quality (int): an int between 0 and 9.
+                Some shows might not have a quality of 9
+
+        Returns:
+            str: A url to an m3u file.
+        """
+        if quality is None:
+            return self.video_url
+        # replace the response handler with one that does nothing to the
+        # response then put the original back.
+        handler = self.client.handle_response
+        try:
+            self.client.handle_response = NullHandler
+            resp = self.client.get(self.video_url)
+            quality = 'Layer{}'.format(quality)
+            for line in resp.split('\n'):
+                if quality in line:
+                    # pull out file from url and replace with file from
+                    # m3u8 file.
+                    url = self.video_url.split('/')[:-1].append(line)
+                    return '/'.join(url)
+        finally:
+            self.client.handle_response = handler
+        # specific quality wasn't found. just return original video url.
+        return self.video_url
 
     def get_related(self):
         return self.invoke()
