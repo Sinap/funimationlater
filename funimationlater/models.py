@@ -234,6 +234,9 @@ class Season(Media):
             self._episodes = EpisodeContainer(
                 [Episode(data['item'], self.client)])
 
+    def __getitem__(self, item):
+        return self._episodes[item]
+
     def __iter__(self):
         for episode in self._episodes:
             yield episode
@@ -279,11 +282,12 @@ class Episode(Media):
 
 class EpisodeDetails(Media):
     def __init__(self, data, client):
-        super(EpisodeDetails, self).__init__(data['item']['video'], client)
         video = data['item']['video']
+        super(EpisodeDetails, self).__init__(video, client)
         metadata = video['content']['metadata']
         hls = data['item']['hls']
         related = data['item']['related']['alternate']
+        self.title = '{} - {}'.format(self.title, video['subtitle'])
         self.video_url = hls['url']
         self.closed_caption_url = hls['closedCaptionUrl']
         self.video_id = int(video['id'])
