@@ -21,14 +21,15 @@ class EpisodeContainer(list):
             item (int): The episode number
 
         Returns:
-            Episode: Returns the details of the requested episode
+            funimationlater.models.Episode: Returns the details of the
+                requested episode
 
         Raises:
             InvalidEpisode: If the episode doesn't exist
         """
         for episode in self:
             if episode.episode_number == item:
-                return episode.get_details()
+                return episode
         raise UnknownEpisode()
 
 
@@ -56,6 +57,10 @@ class Pointer(object):
             self.alternates = [Pointer(**alternates)]
         else:
             self.alternates = []
+
+    def __repr__(self):
+        return '<Pointer: /{}{} -> {}>'.format(self.path, self.params,
+                                               self.target)
 
 
 class Thumbnail(object):
@@ -138,7 +143,7 @@ class Show(Media):
         """Get details about the show
 
         Returns:
-            ShowDetails:
+            funimationlater.models.ShowDetails:
         """
         return self.invoke()
 
@@ -189,6 +194,14 @@ class ShowDetails(Media):
         return 'OVS' in self.seasons.values()
 
     def get_season(self, season=1):
+        """
+
+        Args:
+            season (int):
+
+        Returns:
+            Season:
+        """
         self.season = season
         self.pointer.params = '{}&season={}'.format(self.pointer.params,
                                                     self.season)
@@ -235,6 +248,7 @@ class Season(Media):
                 [Episode(data['item'], self.client)])
 
     def __getitem__(self, item):
+        # type: (int) -> Episode
         return self._episodes[item]
 
     def __iter__(self):
@@ -257,6 +271,7 @@ class Episode(Media):
             self.languages = metadata['languages'].split(',')
         else:
             self.languages = None
+        self._original_params = self.pointer.params
 
     def get_dub(self):
         self._audio = AudioType.DUB
@@ -277,6 +292,8 @@ class Episode(Media):
         if self._audio:
             self.pointer.params = self.pointer.params.replace(
                 'explicit:', '').format(autoPlay=1, audio=self._audio)
+        else:
+            self.pointer.params = self._original_params
         return EpisodeDetails(super(Episode, self).invoke(), self.client)
 
 
@@ -299,8 +316,8 @@ class EpisodeDetails(Media):
         self.params = related['params']
         self.path = related['path']
         self.target = related['target']
-        self.ratings = [(r['@region'], r['#text']) for r in
-                        data['item']['ratings']['tv']]
+        self.ratings = [(r['@region'], r['#text'] if '#text' in r else '')
+                        for r in data['item']['ratings']['tv']]
 
     def get_stream(self, quality=None):
         """Get the m3u URL for a specific stream quality.
@@ -328,7 +345,7 @@ class EpisodeDetails(Media):
                 if quality in line:
                     # pull out file from url and replace with file from
                     # m3u8 file.
-                    url = self.video_url.split('/')[:-1].append(line)
+                    url = self.video_url.split('/')[:-1] + [line]
                     return '/'.join(url)
         finally:
             self.client.handle_response = handler
