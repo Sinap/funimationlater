@@ -67,31 +67,3 @@ class TestFunimationLater(unittest.TestCase):
                             '', 404, 'NOT FOUND', {}, mock.Mock())):
             api = funimationlater.FunimationLater()
             self.assertRaises(funimationlater.UnknownShow, api.get_show, 1)
-
-    def test_something(self):
-        api = funimationlater.FunimationLater()
-        api.logged_in = True
-        api.client.add_headers({
-            'userName': '',
-            'userType': 'FunimationSubscriptionUser',
-            'Authorization': '123',
-            'userRole': 'All-AccessPass',
-        })
-        # queue = api.get_my_queue()
-        # for q in queue:
-        #     api.remove_from_queue(q.show_id)
-        import logging
-        logging.basicConfig(level=logging.DEBUG)
-        show = api.search('show by rock')[0]
-        season = show.get_details().get_season()
-        e = season[10].get_sub()
-        print(e)
-        print(api[31322])
-        # print(api.get_show(12))
-        # print(api.get_episode(37729, 19471).video_url)
-        for show in api:
-            print(show)
-            # for season in show:
-            #     print(season)
-            #     for episode in season:
-            #         print(episode.get_sub().get_stream(5))
