@@ -2,8 +2,8 @@
 from functools import wraps
 
 from .error import (UnknowResponse, LoginRequired, AuthenticationFailed,
-                    HTTPError, UnknownShow, UnknownEpisode)
-from .http import HTTPClient, HTTPClientBase
+                    DetailedHTTPError, UnknownShow, UnknownEpisode)
+from .httpclient import HTTPClient, HTTPClientBase
 from .models import Show, ShowDetails, EpisodeDetails
 from .constants import ShowTypes, SortBy, SortOrder
 
@@ -153,12 +153,15 @@ class FunimationLater(object):
 
         Returns:
             funimationlater.models.ShowDetails: Returns None if no show exists.
+
+        Raises:
+            funimationlater.error.UnknownShow:
         """
         try:
             resp = self.client.get('detail/', {'pk': show_id})
             if resp:
                 return ShowDetails(resp['list2d'], self.client)
-        except HTTPError:
+        except DetailedHTTPError:
             # So we don't need the same code twice, just pass on HTTPError
             # then raise UnknownShow. If it's a different error it should
             # raise that error instead.
@@ -175,6 +178,9 @@ class FunimationLater(object):
 
         Returns:
             funimationlater.models.EpisodeDetails:
+
+        Raises:
+            funimationlater.error.UnknownEpisode:
         """
         params = {'id': episode_id, 'show': show_id}
         if audio_type is not None:
@@ -183,7 +189,7 @@ class FunimationLater(object):
             resp = self.client.get('player/', params)
             if resp:
                 return EpisodeDetails(resp['player'], self.client)
-        except HTTPError:
+        except DetailedHTTPError:
             # See get_episodes note.
             pass
         raise UnknownEpisode("Episode ID {} for show {} doesn't exist".format(
@@ -240,6 +246,11 @@ class FunimationLater(object):
             return [Show(resp, self.client)]
 
     def __iter__(self):
+        """
+        Returns:
+            funimationlater.models.Show:
+
+        """
         offset = 0
         limit = self.default_limit
         while True:
@@ -251,10 +262,17 @@ class FunimationLater(object):
             offset += limit
 
     def __getitem__(self, item):
+        """
+        Args:
+            item (int): Show ID to get
+
+        Returns:
+            funimationlater.models.ShowDetails:
+        """
         if isinstance(item, int):
             try:
                 return self.get_show(item)
-            except HTTPError:
+            except DetailedHTTPError:
                 return None
         # NOTE(Sinap): This would allow you to do api['Cowboy Bebop'] but I'm
         #              not sure if I should do that because it could be

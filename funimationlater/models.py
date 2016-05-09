@@ -35,6 +35,10 @@ class EpisodeContainer(list):
 
 class SeasonContainer(list):
     def __getitem__(self, item):
+        """
+        Returns:
+            funimationlater.models.Season:
+        """
         for season in self:
             if season.title == item:
                 return season
@@ -109,7 +113,9 @@ class Media(object):
                 self.pointer = Pointer(**pointer[0])
             else:
                 self.pointer = Pointer(**pointer)
-        self.title = data['title'].encode('utf-8')
+        # NOTE(Sinap): encode then decode because python2 raises a
+        #              UnicodeEncodeError on title's containing unicode chars.
+        self.title = data['title'].encode('utf-8').decode('utf-8')
         self.client = client
         self._data = data
 
@@ -118,8 +124,7 @@ class Media(object):
         return resp[self.pointer.target]
 
     def __repr__(self):
-        return '<{}: {}>'.format(self.__class__.__name__,
-                                 self.title)
+        return '<{}: {}>'.format(self.__class__.__name__, self.title)
 
 
 class Show(Media):
@@ -151,9 +156,17 @@ class Show(Media):
         return ShowDetails(super(Show, self).invoke(), self.client)
 
     def __getitem__(self, item):
+        """
+        Returns:
+            funimationlater.models.Season:
+        """
         return self.get_details().get_season(item)
 
     def __iter__(self):
+        """
+        Returns:
+            funimationlater.models.Season:
+        """
         details = self.invoke()
         for season in details.seasons:
             result = details.get_season(season)
@@ -183,7 +196,7 @@ class ShowDetails(Media):
             self.seasons = {int(b['value']): b['title'] for b in button}
         else:
             self.seasons = {int(button['value']): button['title']}
-        self.season = self.seasons.keys()[0]
+        self.season = [x for x in self.seasons][0]
 
     @property
     def has_movie(self):
@@ -200,7 +213,7 @@ class ShowDetails(Media):
             season (int):
 
         Returns:
-            Season:
+            funimationlater.models.Season:
         """
         self.season = season
         self.pointer.params = '{}&season={}'.format(self.pointer.params,
@@ -216,13 +229,16 @@ class ShowDetails(Media):
             return []
 
     def __getitem__(self, item):
-        """Get a specific season using index notation
+        """Get a specific season using `[]`
 
         Args:
-            item (int):
+            item (int): Season number
 
         Returns:
+            funimationlater.models.Season:
 
+        Raises:
+            funimationlater.error.UnknownSeason:
         """
         for season in self.seasons:
             if item == season:
@@ -231,6 +247,10 @@ class ShowDetails(Media):
             ', '.join(self.seasons.values())))
 
     def __iter__(self):
+        """
+        Returns:
+            dict[int,str]:
+        """
         for season in self.seasons:
             yield season
 
@@ -248,10 +268,20 @@ class Season(Media):
                 [Episode(data['item'], self.client)])
 
     def __getitem__(self, item):
-        # type: (int) -> Episode
+        """
+        Args:
+            item (int): Episode number
+
+        Returns:
+            funimationlater.models.Episode:
+        """
         return self._episodes[item]
 
     def __iter__(self):
+        """
+        Returns:
+            funimationlater.models.Episode:
+        """
         for episode in self._episodes:
             yield episode
 
@@ -274,17 +304,27 @@ class Episode(Media):
         self._original_params = self.pointer.params
 
     def get_dub(self):
+        """Get the Dub episode
+
+        Returns:
+            funimationlater.models.EpisodeDetails:
+        """
         self._audio = AudioType.DUB
         return self.invoke()
 
     def get_sub(self):
+        """Get the Sub episode
+
+        Returns:
+            funimationlater.models.EpisodeDetails:
+        """
         self._audio = AudioType.SUB
         return self.invoke()
 
     def get_details(self):
         """
         Returns:
-            EpisodeDetails:
+            funimationlater.models.EpisodeDetails:
         """
         return self.invoke()
 
@@ -310,7 +350,11 @@ class EpisodeDetails(Media):
         self.video_id = int(video['id'])
         self.thumbnail = video['thumbnail']
         self.duration = int(metadata['duration'])
-        self.episode = int(metadata['episode'].split(' ')[1])
+        if len(metadata['episode'].split(' ')) > 1:
+            self.episode = int(metadata['episode'].split(' ')[1])
+        else:
+            # NOTE(Sinap): This is probably a movie or OVA so just use 1
+            self.episode = 1
         self.season = int(metadata['season'].split(' ')[1])
         self.show_name = metadata['showName']
         self.params = related['params']
@@ -339,7 +383,7 @@ class EpisodeDetails(Media):
         handler = self.client.handle_response
         try:
             self.client.handle_response = NullHandler
-            resp = self.client.get(self.video_url)
+            resp = self.client.get(self.video_url).decode('utf-8')
             quality = 'Layer{}'.format(quality)
             for line in resp.split('\n'):
                 if quality in line:
@@ -353,6 +397,11 @@ class EpisodeDetails(Media):
         return self.video_url
 
     def get_related(self):
+        """Get shows related to this one.
+
+        Returns:
+            funimationlater.models.ShowDetails:
+        """
         return self.invoke()
 
     def invoke(self):

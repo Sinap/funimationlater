@@ -10,7 +10,7 @@ from .funimationlater import FunimationLater
 # noinspection PyUnresolvedReferences
 from .constants import ShowTypes
 # noinspection PyUnresolvedReferences
-from .http import HTTPClientBase
+from .httpclient import HTTPClientBase
 # noinspection PyUnresolvedReferences
 from .response_handler import ResponseHandler
 

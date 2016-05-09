@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
-import xml.etree.cElementTree as Et
-from utils import etree_to_dict, CaseInsensitiveDict
+from __future__ import absolute_import
+try:
+    import xml.etree.cElementTree as Et
+except ImportError:
+    import xml.etree.ElementTree as Et
+from .utils import etree_to_dict, CaseInsensitiveDict
 
 __all__ = ['ResponseHandler', 'XMLResponse', 'NullHandler']
 

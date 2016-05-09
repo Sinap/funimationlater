@@ -33,7 +33,7 @@ class TestFunimationLater(unittest.TestCase):
             self.assertDictEqual(call_args[1], payload)
 
     def test_get_my_queue(self):
-        with mock.patch('funimationlater.http.urllib2.urlopen',
+        with mock.patch('funimationlater.httpclient.urlopen',
                         return_value=open(
                             os.path.normpath('./test/resources/myqueue.xml'))):
             api = funimationlater.FunimationLater()
@@ -50,7 +50,7 @@ class TestFunimationLater(unittest.TestCase):
         pass
 
     def test_get_all_shows(self):
-        with mock.patch('funimationlater.http.urllib2.urlopen',
+        with mock.patch('funimationlater.httpclient.urlopen',
                         return_value=open(
                             os.path.normpath(
                                 './test/resources/all_shows.xml'))):
@@ -63,7 +63,35 @@ class TestFunimationLater(unittest.TestCase):
 
     def test_get_show_raises_error(self):
         with mock.patch('funimationlater.funimationlater.HTTPClient.get',
-                        side_effect=funimationlater.HTTPError(
+                        side_effect=funimationlater.DetailedHTTPError(
                             '', 404, 'NOT FOUND', {}, mock.Mock())):
             api = funimationlater.FunimationLater()
             self.assertRaises(funimationlater.UnknownShow, api.get_show, 1)
+
+    def test_something(self):
+        api = funimationlater.FunimationLater()
+        api.logged_in = True
+        api.client.add_headers({
+            'userName': '',
+            'userType': 'FunimationSubscriptionUser',
+            'Authorization': '123',
+            'userRole': 'All-AccessPass',
+        })
+        # queue = api.get_my_queue()
+        # for q in queue:
+        #     api.remove_from_queue(q.show_id)
+        import logging
+        logging.basicConfig(level=logging.DEBUG)
+        show = api.search('show by rock')[0]
+        season = show.get_details().get_season()
+        e = season[10].get_sub()
+        print(e)
+        print(api[31322])
+        # print(api.get_show(12))
+        # print(api.get_episode(37729, 19471).video_url)
+        for show in api:
+            print(show)
+            # for season in show:
+            #     print(season)
+            #     for episode in season:
+            #         print(episode.get_sub().get_stream(5))

@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-import time
+from __future__ import print_function, absolute_import
+
 import collections
-from functools import wraps
+import time
 from contextlib import contextmanager
+from functools import wraps
+
+from ._compat import iteritems
 
 __all__ = ['CaseInsensitiveDict', 'etree_to_dict', 'timethis', 'timeblock']
 
@@ -65,11 +68,11 @@ def etree_to_dict(t):
     if children:
         dd = collections.defaultdict(list)
         for dc in map(etree_to_dict, children):
-            for k, v in dc.iteritems():
+            for k, v in iteritems(dc):
                 dd[k].append(v)
-        d = {tag: {k: v[0] if len(v) == 1 else v for k, v in dd.iteritems()}}
+        d = {tag: {k: v[0] if len(v) == 1 else v for k, v in iteritems(dd)}}
     if attrib:
-        d[tag].update({'@' + k: v for k, v in attrib.iteritems()})
+        d[tag].update({'@' + k: v for k, v in iteritems(attrib)})
     text = t.text.strip() if t.text else ''
     if text:
         if children or attrib:
@@ -93,7 +96,7 @@ def timethis(func):
         start = time.time()
         r = func(*args, **kwargs)
         end = time.time()
-        print('{}.{}: {}'.format(func.__module__, func.__name__, end - start))
+        print(u'{}.{}: {}'.format(func.__module__, func.__name__, end - start))
         return r
 
     return wrapper
@@ -111,4 +114,4 @@ def timeblock(label):
         yield
     finally:
         end = time.time()
-        print('{}: {}'.format(label, end - start))
+        print(u'{}: {}'.format(label, end - start))

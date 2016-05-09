@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
+import collections
 import logging
-import urllib2
-from urllib import urlencode
+
+try:
+    from urllib.parse import urlencode
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError
+except ImportError:
+    from urllib import urlencode
+    from urllib2 import urlopen, Request, HTTPError
 
 from .response_handler import XMLResponse
-from .error import HTTPError
+from .error import DetailedHTTPError
 __all__ = ['HTTPClientBase', 'HTTPClient']
 
 
@@ -52,6 +60,7 @@ class HTTPClient(HTTPClientBase):
         else:
             self.handle_response = response_handler
         self._log = logging.getLogger(__name__)
+        self._previous_requests = collections.deque(maxlen=5)
 
     def get(self, uri, qry=None):
         """Send a GET request to `host` + `uri`
@@ -90,12 +99,14 @@ class HTTPClient(HTTPClientBase):
 
     def _request(self, uri, data=None):
         req = self._create_request(uri)
+        self._previous_requests.appendleft(req)
         try:
-            resp = urllib2.urlopen(req, data)
+            resp = urlopen(req, data)
             handler = self.handle_response(resp.read(), req)
             return handler.handle()
-        except urllib2.HTTPError as err:
-            raise HTTPError(err.filename, err.code, err.msg, err.hdrs, err.fp)
+        except HTTPError as err:
+            raise DetailedHTTPError(err.filename, err.code, err.msg, err.hdrs,
+                                    err.fp)
 
     def _create_request(self, uri):
         """Builds :class:`urllib2.Request` object using `uri` and sets the
@@ -108,7 +119,7 @@ class HTTPClient(HTTPClientBase):
             urllib2.Request: A request object that will be used by
                 :class:`urllib2.urlopen`
         """
-        req = urllib2.Request(self._build_url(uri), headers=self.headers)
+        req = Request(self._build_url(uri), headers=self.headers)
         self._log.debug(
             'Calling %s on %s', req.get_method(), req.get_full_url())
         return req
@@ -120,3 +131,6 @@ class HTTPClient(HTTPClientBase):
             return self.host + uri
         else:
             return self.host + '/' + uri
+
+    def __repr__(self):
+        return '<HTTPClient: {}>'.format(self.host)

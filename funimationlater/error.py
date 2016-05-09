@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-import urllib2
+try:
+    from urllib.error import HTTPError
+except ImportError:
+    from urllib2 import HTTPError
 
 __all__ = ['AuthenticationFailed', 'LoginRequired', 'UnknowResponse',
-           'UnknownSeason', 'UnknownEpisode', 'UnknownShow', 'HTTPError']
+           'UnknownSeason', 'UnknownEpisode', 'UnknownShow',
+           'DetailedHTTPError']
 
 
 class AuthenticationFailed(Exception):
@@ -29,7 +33,8 @@ class UnknownShow(Exception):
     pass
 
 
-class HTTPError(urllib2.HTTPError):
+# noinspection PyClassHasNoInit
+class DetailedHTTPError(HTTPError):
     """Override the str method to provide the URL with the error"""
     def __str__(self):
         return 'HTTP Error {}: URL: {} MSG: {}'.format(

@@ -2,7 +2,7 @@
 import unittest
 import mock
 import xml.etree.cElementTree as Et
-from StringIO import StringIO
+from io import StringIO
 from funimationlater.utils import (etree_to_dict, CaseInsensitiveDict,
                                    timethis, timeblock)
 
